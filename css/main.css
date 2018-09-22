@@ -12,14 +12,16 @@ h1,h2,h3 {
   line-height:1.2;
 }
 #header{
+  max-width: 50%;
+  margin: 1em auto;
+  padding: 0em;
 }
 #content{
   max-width: 50%;
   margin:1em auto;
-  padding: 0em
+  padding: 0em;
 }
 #footer{
-  position: fixed;
   bottom: 0;
   background: #333333;
   color: #ffffff;
