@@ -12,6 +12,15 @@ h1,h2,h3 {
         max-width:none
     }
 }
+#footer{
+    bottom: 0;
+    background: #333333;
+    color: #ffffff;
+    padding: 0.5em 10%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
 
 /*
 html, body {
