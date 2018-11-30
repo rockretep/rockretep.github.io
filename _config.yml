@@ -19,6 +19,7 @@ compass:
   include_analytics: false
   # Twitter @username (as defined by the Twitter Card specs)
   twitter: "rockretep"
+  contact: "mailto:peter@rockretep.net"
 
 # exclude
 exclude: ["CNAME", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
