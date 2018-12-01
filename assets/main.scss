@@ -16,15 +16,10 @@ main {
 	padding: 0 20px;
 }
 
-header2 {
-	align-self: center
-}
-
 /*** wrapper div for both header and main ***/
 .wrapper {
 	margin-top: 10%;
 }
-
 
 /*** anchor tags ***/
 a:link,
@@ -139,11 +134,6 @@ footer {
 		float: left;
 		width: 46%;
 		text-align: right;
-	}
-
-	header2 {
-		float: top;
-		align-self: center;
 	}
 
 	.author-container h1,
