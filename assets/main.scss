@@ -2,8 +2,8 @@
 ---
 
 $text-color: #46433A;
-$anchor-text-color: #CE534D;
-$background-color: #F1EED9;
+$anchor-text-color: #474747;
+$background-color: #e6e6e6;
 
 body {
 	font-family: 'Vollkorn', serif;
@@ -16,10 +16,15 @@ main {
 	padding: 0 20px;
 }
 
+header2 {
+	align-self: center
+}
+
 /*** wrapper div for both header and main ***/
 .wrapper {
 	margin-top: 10%;
 }
+
 
 /*** anchor tags ***/
 a:link,
@@ -134,6 +139,11 @@ footer {
 		float: left;
 		width: 46%;
 		text-align: right;
+	}
+
+	header2 {
+		float: top;
+		align-self: center;
 	}
 
 	.author-container h1,

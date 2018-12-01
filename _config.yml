@@ -1,6 +1,6 @@
 # general configuration
 url: http://rockretep.net/
-baseurl: ''
+baseurl: 'rockretep.net'
 
 # compass configuration
 compass:
