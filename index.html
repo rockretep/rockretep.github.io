@@ -1,27 +1,44 @@
----
-layout: base
----
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peter Francis</title>
+  <link rel="apple-touch-icon" href="./images/avatar.png"/>
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="./favicon.ico" />
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
 <div class="wrapper">
-    <header>
-        {% if site.compass.logo %}
-        <div class="logo-container">
-          <a class="logo" href="{{ page.baseurl }}" style="background-image: url('{{ site.baseurl }}{{ site.compass.logo }}')"></a>
-        </div>
-        {% endif %}
-
-        {% if site.compass.author %}
-        <div class="author-container"><h1>{{ site.compass.author }}</h1></div>
-        {% endif %}
-
-        {% if site.compass.tagline %}
-        <div class="tagline-container"><p>{{ site.compass.tagline }}</p></div>
-        {% endif %}
-    </header>
-    <main>
-      {% if site.compass.include_content %}
-      <div class="content">
-        {% include content.html %}
-      </div>
-      {% endif %}
-    </main>
+<header>
+  <div class="logo-container">
+    <a class="logo" style="background-image: url('./images/avatar.png')"></a>
+  </div>
+  <div class="author-container"><h1>Peter Francis</h1></div>
+  <div class="tagline-container"><p>Game Developer & Software Programmer <br> <br> <a href="mailto:peter@rockretep.net">peter@rockretep.net</a></p></div>
+</header>
+<main>
+<div class="content">
+  <h2>About Me</h2>
+  <p>I'm a student interested in Computer Science, Artificial Intelligence, and Game Design. I like to play and make games, experiment programming things, learn about topics in Math and various technology, and dream about developing a more meaningful world.</p>
+  <hr/>
+  <ul class="fa-ul main-list">
+  <li class="main-list-item">
+  <span class="fa fa-user fa-lg main-list-item-icon"></span>
+  <a href="resume.pdf">Résumé</a>
+  </li>
+  <li class="main-list-item">
+  <span class="fa fa-briefcase fa-lg main-list-item-icon"></span>
+  <a href="./portfolio.html">Portfolio</a>
+  </li>
+  </ul>
+  </div>
+  </main>
 </div>
+</body>
+
+</html>
