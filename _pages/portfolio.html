@@ -1,0 +1,25 @@
+---
+layout: page
+title: Portfolio
+subtitle: Peter Francis Portfolio
+permalink: /portfolio/
+---
+
+<div class="projects">
+  <div class="grid no-gutters">
+    {% for page in site.portfolio %}
+      <div class="unit half">
+        <div class="project">
+          <h4 class="project-title">
+            <a href="{{ page.permalink }}"> {{ page.title }}</a>
+          </h4>
+          
+          {% if page.image %}
+          <img src="{{ site.baseurl }}/assets/img/{{ page.image }}">
+          {% endif %}
+          <p>{{ page.subtitle }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

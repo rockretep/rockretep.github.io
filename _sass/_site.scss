@@ -1,0 +1,178 @@
+.site {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 $spacer;
+  @include make-container();
+}
+
+// RESPONSIVE SITE
+@include mq-up(sm) {
+  .site {
+    padding: 0 $spacer2;
+  }
+}
+
+// SITE HEADER ====================================
+
+.site-header {
+  margin: $spacer4 0 $spacer1;
+  display: flex;
+  align-items: center;
+  @include clearfix();
+}
+
+.site-logo {
+  width: 96pt;
+  height: 96pt;
+  background-size: cover;
+  border-radius: $border-radius;
+  border: $border-width solid $brand-light-color;
+  box-shadow: $brand-color 5pt 5pt 0pt;
+}
+
+.site-nav {
+  display: flex;
+  justify-content: center;
+  font-family: "Computer Modern Serif", serif;
+  font-size: 1.1rem;
+}
+
+.site-title {
+  text-align: center;
+}
+
+.site-nav a {
+  flex: 0 1 auto;
+  padding: 0 .25rem;
+  margin: $spacer1;
+  transition: background 0.1s ease-out;
+
+  &:hover {
+    text-decoration: none;
+    color: $link-color;
+    background-color: $brand-light-color;
+  }
+
+  &:focus,
+  &:active {
+    background-color: $link-color;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  &.current {
+    font-weight: bold;
+  }
+}
+
+// SITE HEADER - RESPONSIVE ------------------
+
+@include mq-up(sm) {
+  .site-header {
+    margin: $spacer4 0 $spacer2;
+  }
+
+  .site-title {
+    margin-bottom: $spacer1;
+  }
+
+  .site-nav a {
+    margin-right: $spacer1;
+  }
+}
+
+@include mq-up(md) {
+  .site-logo {
+    //margin-left: $spacer0;
+    width: 96pt;
+    height: 96pt;
+    background-size: cover;
+    border-radius: $border-radius;
+    border: $border-width solid $brand-light-color;
+    box-shadow: $brand-color 5pt 5pt 0pt;
+  }
+
+  .site-nav {
+    //float: bottom;
+    //width: 80%;
+    margin-top: $spacer0;
+    justify-content: space-around;
+    font-size: 1.25rem;
+
+    a {
+      margin: $spacer1;
+      padding: .25rem $spacer0;
+      border: 1px solid $brand-color;
+      box-shadow: $brand-color 6px 6px 0px;
+    }
+  }
+
+  .site-title {
+    float: left;
+    width: 20%;
+    text-align: inherit;
+    margin-bottom: $spacer0;
+  }
+}
+
+// SITE FOOTER ====================================
+
+.site-footer {
+  margin: 4rem 0 6rem;
+  padding-top: $spacer1;
+  font-family: $font-heading;
+  border-top: 1px solid $brand-light-color;
+}
+
+.site-footer {
+  ul, li {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    display: inline-block;
+  }
+}
+
+.site-author {
+  font-weight: bold;
+  margin-left: $spacer0;
+}
+
+.site-source a {
+  color: $gray;
+}
+
+.site-links {
+  @include clearfix();
+}
+
+.site-contact li,
+.site-source li {
+
+  &:not(:last-child)::after {
+    content: '|';
+    color: $brand-light-color;
+    margin: 0 .3rem 0 $spacer0;
+  }
+}
+
+// SITE FOOTER - RESPONSIVE ------------------
+@include mq-up(sm) {
+  .site-contact {
+    float: right;
+    //width: 50%;
+    text-align: right;
+  }
+
+  .site-source {
+    float: left;
+    width: 50%;
+  }
+}
