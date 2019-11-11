@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Peter Francis</title>
+
+    <link rel="icon" href="/assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+
+    <link href="/css/main.less" rel="stylesheet" type="text/less" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.0.4/less.min.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <header>
+      <a href="/" title="Home page" class="logo">
+        <img src="/assets/image/logo1.svg">
+      </a>
+      <nav>
+          <a href="/#portfolio">Portfolio</a>
+          <a href="/#about">About</a>
+          <a href="/assets/francis_peter_resume.pdf">Résumé</a>
+      </nav>
+    </header>
+
+    <h1>Peter Francis</h1>
+    <h4>Games & Software Developer</h4>
+    <br>
+
+    <h3 id="portfolio">Portfolio</h3>
+    <hr>
+
+    <div class="grid">
+      <a class="tile" id="portfolio/oddestsea" style="background-image:url('/assets/image/oddestsea2.png')" href="portfolio/oddestsea.html" title="OddestSea">
+        <tsub>OddestSea</tsub>
+      </a>
+      <a class="tile" id="portfolio/asymars" style="background-image:url('/assets/image/asymars2.png')" href="portfolio/asymars.html" title="Asymars">
+        <tsub>Asymars</tsub>
+      </a>
+      <a class="tile" id="portfolio/tumbleblock" style="background-image:url('/assets/image/tumbleblock2.png')" href="portfolio/tumble_blocks.html" title="Tumble Blocks">
+        <tsub>Tumble Blocks</tsub>
+      </a>
+      <a class="tile" id="portfolio/charbble" style="background-image:url('/assets/image/charbble2.png')" href="portfolio/charbble.html" title="Charbble">
+        <tsub>Charbble</tsub>
+      </a>
+      <a class="tile" id="portfolio/UM_AI" href="portfolio/UM_AI.html" title="UM_AI">
+        <tsub>UM_AI</tsub>
+      </a>
+      <a class="tile" id="portfolio/taps" href="portfolio/taps.html" title="The Astro Parcel Service">
+        <tsub id="fitme">The Astro Parcel Service</tsub>
+      </a>
+    </div>
+
+    <h3 id="about">About me</h3>
+    <hr>
+    <div class="about">
+      <p>
+        I’m a student at Indiana University Bloomington pursuing a double-major in Computer Science and Game Design. I'm interested in Computer Science, Artificial Intelligence, and Game Development. I like to play and make games, experiment programming things, learn about topics in Math and various technology, and hope to contribute to develop a better world.
+      </p>
+      <img src="/assets/image/face.jpg" alt="Peter Francis headshot">
+    </div>
+
+    <footer>
+      <span class="author" id="year">
+        &copy; Peter Francis,
+      </span>
+      <script type="text/javascript">
+        document.getElementById('year').innerHTML += new Date().getFullYear();
+      </script>
+      <span class="links">
+        <div class="contact">
+          <ul>
+            <li>
+              <i class="fas fa-envelope-square"></i>
+              <a href="mailto:peter@rockretep.net">peter@rockretep.net</a>
+            </li>
+            <li>
+              <i class="fab fa-twitter"></i>
+              <a target="_blank" rel="external" href="https://twitter.com/rockretep">Twitter</a>
+            </li>
+            <li>
+              <i class="fab fa-github"></i>
+              <a target="_blank" rel="external" href="https://github.com/rockretep">Github</a>
+            </li>
+            <li>
+              <i class="fab fa-linkedin"></i>
+              <a target="_blank" rel="external" href="https://www.linkedin.com/in/peter-francis-042196176">LinkedIn</a>
+            </li>
+          </ul>
+        </div>
+      </span>
+    </footer>
+  <script src="/js/fitty.min.js"></script>
+  <script>
+    fitty('#fitme');
+  </script>
+  </body>
+</html>
