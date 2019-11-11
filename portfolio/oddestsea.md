@@ -1,7 +1,6 @@
 ---
-layout: default
 title: OddestSea
-permalink: /oddestsea/
 subtitle: Sailing in an eeire sea rescuing souls
-image: "oddestsea.gif"
 ---
+
+*__oddestsea.com[https://www.oddestsea.com/]__*

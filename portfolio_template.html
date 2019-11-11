@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
-    <title>Peter Francis</title>
-
+    <meta name="generator" content="pandoc" />
+    $for(author-meta)$
+    <meta name="author" content="$author-meta$" />
+    $endfor$
+    $if(date-meta)$
+    <meta name="date" content="$date-meta$" />
+    $endif$
+    $if(keywords)$
+    <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
+    $endif$
+    <base href="https://www.rockretep.net/" target="_self">
+    <title>Peter Francis/$pagetitle$</title>
+    $if(math)$
+      $math$
+    $endif$
     <link rel="icon" href="/assets/img/favicon.ico">
     <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 
@@ -27,42 +39,13 @@
       </nav>
     </header>
 
-    <h1>Peter Francis</h1>
-    <h4>Games & Software Developer</h4>
-    <br>
-
-    <h3 id="portfolio">Portfolio</h3>
+    <h2>$pagetitle$</h2>
+    $if(subtitle)$
+    <h4>$subtitle$</h4>
+    $endif$
     <hr>
 
-    <div class="grid">
-      <a class="tile" id="portfolio/oddestsea" style="background-image:url('/assets/image/oddestsea2.png')" href="portfolio/oddestsea.html" title="OddestSea">
-        <tsub>OddestSea</tsub>
-      </a>
-      <a class="tile" id="portfolio/asymars" style="background-image:url('/assets/image/asymars2.png')" href="portfolio/asymars.html" title="Asymars">
-        <tsub>Asymars</tsub>
-      </a>
-      <a class="tile" id="portfolio/tumbleblock" style="background-image:url('/assets/image/tumbleblock2.png')" href="portfolio/tumble_blocks.html" title="Tumble Blocks">
-        <tsub>Tumble Blocks</tsub>
-      </a>
-      <a class="tile" id="portfolio/charbble" style="background-image:url('/assets/image/charbble2.png')" href="portfolio/charbble.html" title="Charbble">
-        <tsub>Charbble</tsub>
-      </a>
-      <a class="tile" id="portfolio/UM_AI" href="portfolio/UM_AI.html" title="UM_AI">
-        <tsub>UM_AI</tsub>
-      </a>
-      <a class="tile" id="portfolio/taps" href="portfolio/taps.html" title="The Astro Parcel Service">
-        <tsub id="fitme">The Astro Parcel Service</tsub>
-      </a>
-    </div>
-
-    <h3 id="about">About me</h3>
-    <hr>
-    <div class="about">
-      <p>
-        I’m a student at Indiana University Bloomington pursuing a double-major in Computer Science and Game Design. I'm interested in Computer Science, Artificial Intelligence, and Game Development. I like to play and make games, experiment programming things, learn about topics in Math and various technology, and hope to develop a better world.
-      </p>
-      <img src="/assets/image/face.jpg" alt="Peter Francis headshot">
-    </div>
+    $body$
 
     <footer>
       <span class="author" id="year">
@@ -94,9 +77,6 @@
         </div>
       </span>
     </footer>
-  <script src="/js/fitty.min.js"></script>
-  <script>
-    fitty('#fitme');
-  </script>
+
   </body>
 </html>

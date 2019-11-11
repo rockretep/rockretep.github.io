@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
-    <title>Peter Francis</title>
-
-    <link rel="icon" href="/assets/img/favicon.ico">
+    <meta name="generator" content="pandoc" />
+                <base href="https://www.rockretep.net/" target="_self">
+    <title>Peter Francis/Asymars</title>
+        <link rel="icon" href="/assets/img/favicon.ico">
     <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 
     <link href="/css/main.less" rel="stylesheet" type="text/less" />
@@ -27,41 +27,24 @@
       </nav>
     </header>
 
-    <h1>Peter Francis</h1>
-    <h4>Games & Software Developer</h4>
-    <br>
+    <h2>Asymars</h2>
+        <hr>
 
-    <h3 id="portfolio">Portfolio</h3>
-    <hr>
-
-    <div class="grid">
-      <a class="tile" id="portfolio/oddestsea" style="background-image:url('/assets/image/oddestsea2.png')" href="portfolio/oddestsea.html" title="OddestSea">
-        <tsub>OddestSea</tsub>
-      </a>
-      <a class="tile" id="portfolio/asymars" style="background-image:url('/assets/image/asymars2.png')" href="portfolio/asymars.html" title="Asymars">
-        <tsub>Asymars</tsub>
-      </a>
-      <a class="tile" id="portfolio/tumbleblock" style="background-image:url('/assets/image/tumbleblock2.png')" href="portfolio/tumble_blocks.html" title="Tumble Blocks">
-        <tsub>Tumble Blocks</tsub>
-      </a>
-      <a class="tile" id="portfolio/charbble" style="background-image:url('/assets/image/charbble2.png')" href="portfolio/charbble.html" title="Charbble">
-        <tsub>Charbble</tsub>
-      </a>
-      <a class="tile" id="portfolio/UM_AI" href="portfolio/UM_AI.html" title="UM_AI">
-        <tsub>UM_AI</tsub>
-      </a>
-      <a class="tile" id="portfolio/taps" href="portfolio/taps.html" title="The Astro Parcel Service">
-        <tsub id="fitme">The Astro Parcel Service</tsub>
-      </a>
+    <p><em>A full report on this project can be found <strong><a href="/assets/asymars_report.pdf">here</a></strong></em></p>
+    <p>Loosely based on chess, <em>Asymars</em> is a two-player, competitive, zero-sum game played on a asymmetrical board with pieces distributed asymmetrically. The game pieces are defined by simple properties defining direction of movement, range of movement, direction of attack, attack range,and HP value. Players take turns moving pieces and attacking enemy pieces until all enemy pieces are eliminated.</p>
+    <div class="figure">
+    <img src="/assets/image/asymars1.png" />
+    
     </div>
-
-    <h3 id="about">About me</h3>
-    <hr>
-    <div class="about">
-      <p>
-        I’m a student at Indiana University Bloomington pursuing a double-major in Computer Science and Game Design. I'm interested in Computer Science, Artificial Intelligence, and Game Development. I like to play and make games, experiment programming things, learn about topics in Math and various technology, and hope to develop a better world.
-      </p>
-      <img src="/assets/image/face.jpg" alt="Peter Francis headshot">
+    <p>I designed the game pieces to have simple properties and rules, which allowed for the efficient implementations of artificial intelligence systems. For example, Alpha-Beta pruning is used in combination with the Minimax algorithm to simulate and reduce game states which ultimately determine the AI player's choices.</p>
+    <div class="figure">
+    <img src="/assets/image/asymars3.png" />
+    
+    </div>
+    <p><em>Asymars</em> is asymmetrical in that it can be played on many different board shapes and with combinations of player pieces and types, making for unique,complex relationships that nonetheless emerge from simple properties of gameplay. To accommodate this dynamic, I designed many different heuristics to determine which were most effective with different board and piece configurations and which benefited from first move advantage.</p>
+    <div class="figure">
+    <img src="/assets/image/asymars4.png" />
+    
     </div>
 
     <footer>
@@ -94,9 +77,6 @@
         </div>
       </span>
     </footer>
-  <script src="/js/fitty.min.js"></script>
-  <script>
-    fitty('#fitme');
-  </script>
+
   </body>
 </html>
