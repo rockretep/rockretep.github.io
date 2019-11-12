@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR="portfolio"
+DIR="."
 
 for file in $DIR/*.md; do
   echo "Processing $file"
