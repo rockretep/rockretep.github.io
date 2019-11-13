@@ -13,7 +13,11 @@
     $if(keywords)$
     <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
     $endif$
-    <base href="https://www.rockretep.net/" target="_self">
+    <base href="" target="_self">
+    <script type="text/javascript">
+      document.getElementsByTagName("base")[0].href = window.location.href;
+    </script>
+
     <title>Peter Francis/$pagetitle$</title>
     $if(math)$
       $math$
