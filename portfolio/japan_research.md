@@ -1,6 +1,6 @@
 ---
 title: Japanese Game Industry Research
-subtitle: Papers involving the Japanese Game Industry and technology
+subtitle: Research papers on the Japanese Games & Media
 ---
 
-gamasutra articles: ...
+...
