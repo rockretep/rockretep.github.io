@@ -40,6 +40,7 @@
 	<hr>
 
 	<div class="grid force-column">
+		<!-- $for(headings)$ -->
 		<a class="tile" id="portfolio/oddestsea" href="portfolio/oddestsea.html" title="OddestSea">
 			<div class="thumbnail wide" style="background-image:url('/assets/image/oddestsea2.png')">
 			</div>
@@ -49,87 +50,19 @@
 				</p>
 			</div>
 		</a>
-		<a class="tile" id="portfolio/asymars" href="portfolio/asymars.html" title="Asymars">
-			<div class="thumbnail wide" style="background-image:url('/assets/image/asymars2.png')">
-			</div>
-			<div class="content">
-				<p>
-					<strong>Asymars</strong>
-				</p>
-			</div>
-		</a>
-		<a class="tile" id="portfolio/tumbleblock">
-			<div class="thumbnail wide" style="background-image:url('/assets/image/tumbleblock2.png')">
-			</div>
-			<div class="content">
-				<p>
-					<strong>Tumbleblock</strong>
-				</p>
-			</div>
-		</a>
-		<a class="tile" id="portfolio/charbble">
-			<div class="thumbnail wide" style="background-image:url('/assets/image/charbble2.png')">
-			</div>
-			<div class="content">
-				<p>
-					<strong>Charbble</strong>
-				</p>
-			</div>
-		</a>
-		<a class="tile" id="portfolio/UM_AI">
-			<!-- <div class="thumbnail wide" style="background-image:url('/assets/image/tumbleblock2.png')"></div> -->
-			<div class="content">
-				<p>
-					<strong>Tumbleblock</strong>
-				</p>
-			</div>
-		</a>
-		<a class="tile" id="portfolio/taps">
-			<!-- <div class="thumbnail wide" style="background-image:url('/assets/image/tumbleblock2.png')"> -->
-			<!-- </div> -->
-			<div class="content">
-				<p>
-					<strong>Tumbleblock</strong>
-				</p>
-			</div>
-		</a>
-		<a class="tile" id="portfolio/BanishedParser">
-			<div class="thumbnail wide" style="background-image:url('/assets/image/banished2.png')">
-			</div>
-			<div class="content">
-				<p>
-					<strong>Banished Parser</strong>
-				</p>
-			</div>
-		</a>
-		<a class="tile" id="portfolio/mazito">
-			<div class="thumbnail wide" style="background-image:url('/assets/image/mazito1.png')">
-			</div>
-			<div class="content">
-				<p>
-					<strong>Tumbleblock</strong>
-				</p>
-			</div>
-		</a>
-		<a class="tile" id="portfolio/japan_research">
-			<div class="thumbnail wide" style="background-image:url('/assets/image/astro.png')">
-			</div>
-			<div class="content">
-				<p>
-					<strong>Japanese Games & Media Research</strong>
-				</p>
-			</div>
-		</a>
+		<!-- $endfor$ -->
 	</div>
 
+	$if(about)$
 	<h3 id="about">About me</h3>
 	<hr>
 	<div class="about">
 		<img src="/assets/image/face.jpg" alt="Peter Francis headshot">
 	<p>
-		I'm a student at Indiana University Bloomington pursuing a double-major in Computer Science and Game Design. I'm interested in Computer Science, Artificial Intelligence, and Game Development. I like to play and make games, experiment programming things, learn about topics in Math and various technology, and hope to develop a better world.
+		$about$
 	</p>
 	</div>
+	$endif$
 
 	<footer>
 	<span class="author" id="year">

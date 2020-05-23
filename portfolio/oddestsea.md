@@ -1,6 +1,10 @@
 ---
 title: OddestSea
 subtitle: A game about sailing in an eerie sea
+abstract: |
+	Something something
+	something uh else
+keywords: []
 ---
 
 *Official website: __[oddestsea.com](https://www.oddestsea.com/)__*
