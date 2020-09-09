@@ -1,0 +1,15 @@
+#! /bin/bash
+
+FILES='./source/posts/*'
+METADATA="posts:\n"
+FILENAME=""
+CURRENT=""
+
+for POST in $FILES 
+do
+	FILENAME="  - ""$(awk '{if(/filename/) print $2}' ${POST})"":\n"
+	CURRENT="$(awk '/---/{n++;next};n==2{exit};n>=0' ${POST} | awk '{printf "    %s\n",$0}')"
+	METADATA=${METADATA}${FILENAME}${CURRENT}"\n"
+done
+printf "${METADATA}" > 'source/meta.yaml'
+

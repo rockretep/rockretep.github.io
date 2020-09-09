@@ -1,0 +1,287 @@
+@import "/fonts/Serif/cmun-serif.css";
+@import "/fonts/Sans/cmun-sans.css";
+@import "/fonts/Typewriter/cmun-typewriter.css";
+
+/////////
+// Colors
+/////////
+$black: #000000;
+// sadly 100 is not evenly divisible by 7
+$gray-darkest: #0a0a0a;
+$gray-darker: #292929;
+$gray-dark: #525252;
+$gray: #808080;
+$gray-light: #a3a3a3;
+$gray-lighter: #cccccc;
+$gray-lightest: #f5f5f5;
+$white: #ffffff;
+$text-color: $black;
+$background-color: $gray-lightest;
+$linkColor: $gray-dark;
+$linkVisitedColor: $gray-light;
+
+////////
+// Fonts
+////////
+// "Computer Modern Serif"
+$font-serif: "Computer Modern Serif", serif;
+// "Computer Modern Sans"
+$font-sans: "Computer Modern Sans", sans-serif;
+//"Computer Modern Typewriter"
+$font-monospace: "Computer Modern Typewritter", monospace;
+
+////////
+// Units
+////////
+$unit: 		1em;
+$unit2:		$unit * 2;
+$unit4:		$unit * 4;
+$unit8: 	$unit * 8;
+$unit16:	$unit * 16;
+$unit32:	$unit * 32;
+$unit64:	$unit * 64;
+$unit_2:	$unit * 0.5;
+$unit_4:	$unit * 0.04;
+$unit_8:	$unit * 0.08;
+$unit_16:	$unit * 0.016;
+$unit_32:	$unit * 0.032;
+$unit_64:	$unit * 0.064;
+
+////////
+// Sizes
+////////
+$border-width: 0.25em;
+$border-radius: 50%;
+$border-radius-small: 0.2em;
+$border-radius-large: 0.3em;
+$font-size:		$unit;
+$page-width:	$unit64;
+$tileSize:		$unit8;
+
+body {
+	font-family: $font-serif;
+	font-size: $font-size;
+	max-width: $page-width;  
+	padding-left: 2%;
+	padding-right: 2%;
+	margin: 0 auto;
+	height: 100%;
+	background: $background-color;
+}
+
+header {
+	margin-bottom: 1em;
+	text-align: center;
+}
+
+footer {
+	position: relative;
+	bottom: 0em;
+	width: 100%;
+	padding-top: $unit2;
+	font-size: 0.8em;
+}
+
+a {
+	color: $text-color;
+	font-weight: bold;
+}
+
+img {
+	border: none;
+	margin: 0.8em;
+}
+
+p {
+	margin-top: 0em;
+	margin-bottom: $unit;
+	text-align: justify;
+}
+
+sup {
+	vertical-align: $unit_2;
+	font-size: $unit_2;
+}
+
+article {
+	img {
+		width: 100%;
+		height: auto;
+	}
+	img[src*="left"] {
+		~ figcaption {
+			float: left;
+		}
+		float: left;
+		margin-left: 0em;
+	}
+	img[src*="right"] {
+		~ figcaption {
+			float: right;
+		}
+		float: right;
+		margin-right: 0em;
+	}
+	img[src*="small"] {
+		~ figcaption {
+			width: 33%;
+			height: 33%;
+		}
+		width: 33%;
+		height: 33%;
+	}
+	img[src*="medium"] {
+		~ figcaption {
+			width: 50%;
+			height: 50%;
+		}
+		width: 50%;
+		height: 50%;
+	}
+}
+
+address {
+	font-style: inherit;
+	ul, li {
+		margin-bottom: 0;
+		margin-top: 0;
+	  }
+	  ul {
+		  list-style-type: none;
+		  padding: 0;
+	  }
+	  li {
+		display: inline-block;
+	}
+}
+
+pre code {
+	display: block;
+	font-family: $font-monospace;
+	font-size: $font-size;
+	background-color: $white;
+	border: solid;
+	border-width: $unit_4;
+	border-color: $black;
+	padding-top: $unit;
+	padding-bottom: $unit;
+	padding-left: 2%;
+	overflow: scroll;
+}
+
+blockquote { 
+	background-color: $gray-lighter;
+	border: dashed $unit_16 $gray;
+	width: 98%;
+	font-style: italic; 
+	text-align: justify;
+	padding: 1em;
+	padding-top: 2em;
+	padding-bottom: 2em;
+	margin: 0em;
+	margin-bottom: 2em; 
+}
+
+blockquote div {
+	text-transform: none;
+	text-align: right;
+	width: 100%;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	margin-top: 0;
+	margin-bottom: 0.1em;
+	line-height: 1.1em;
+}
+  
+h1 {font-size: 2.5em;}
+h2 {font-size: 2em;}
+h3 {font-size: 1.5em;}
+h4 {font-size: 1.3em;}
+h5 {font-size: 1.2em;}
+h6 {font-size: 1.1em;}
+
+// Small media / mobile
+@media (max-width: 500px) {
+	* {
+		font-size: 12px; 
+	}
+	pre {
+		font-size: 11px;  
+	}
+}   
+  
+.hidden {
+	display: none;
+}
+
+.center {
+	text-align: center;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-auto-rows: 8em;
+	grid-gap: 0.8em;
+}
+
+.tile {
+	display: flex;
+	position: relative;
+	width: auto;
+	border: solid $unit_16 $black;
+	overflow: hidden;
+	text-decoration: none;
+	font-size: 0.8em;
+	.thumbnail {
+		background-size: cover;
+		background-position: center;
+		position: relative;
+		width: 33%;
+		border-right: 1em;
+	}
+	.content {
+		display: block;
+		position: relative;
+		width: 100%;
+		margin: 0.8em;
+		margin-bottom: 0em;
+		text-align: justify;
+		font-weight: normal;
+	}
+}
+
+.post-info {
+	display: block;
+	font-size: 0.9em;
+	font-weight: lighter;
+	margin-bottom: 0.8em;
+}
+
+.title {
+	font-family: $font-sans;
+	text-transform: uppercase;
+	text-decoration: none;
+	text-align: center;
+	font-weight: bold;
+	display: inline-block;
+}
+
+.logo {
+	display: block;
+	width: 100%;
+	height: $unit4;
+	background: url('/images/avatar.svg');
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-top: 0.8em;
+	margin-bottom: -0.8em;
+}
+
+.spanpart {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}

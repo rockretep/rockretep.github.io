@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+$head$
+$for(header-includes)$
+$header-includes$
+$endfor$
+$header$
+$for(include-before)$
+$include-before$
+$endfor$
+<article>
+    <section id="title">
+		<div class="spanpart">
+		<div class="post-info">
+			$date$
+			<br>
+			$for(tags)$
+				<span class="tag">$it$</span>
+			$endfor$
+		</div>
+		$confidence$
+		</div>
+		<h2>$title$</h2>
+		<hr>
+    </section>
+    <section id="body">
+        $body$
+    </section>
+</article>
+$for(include-after)$
+$include-after$
+$endfor$
+</html>

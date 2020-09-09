@@ -1,0 +1,23 @@
+<h4>Portfolio</h4>
+<hr>
+<div class="grid">
+$for(posts)$
+	<a class="tile" href="posts/$posts.filename$.html" title="$posts.title$">
+		<div class="thumbnail wide" style="background-image:url('images/$posts.mainimage$')">
+		</div>
+		<div class="content">
+			<h5>$posts.title$</h5>
+			
+			$posts.subtitle$
+			<div class="post-info">
+			$posts.date$
+			<div class="tags">
+			$for(posts.tags)$
+				<span class="tag">$it$</span>
+			$endfor$
+			</div>
+			</div>
+		</div>
+	</a>
+$endfor$
+</div>

@@ -1,0 +1,60 @@
+posts:
+  - AI_framework:
+    filename: AI_framework
+    title: AI Framework for games
+    subtitle: Small, general-purpose AI framework
+    tags: [Solo, Tool, C, AI]
+    confidence: Unlikely
+    mainimage: bubo.png
+  - asymars:
+    filename: asymars
+    title: Asymars
+    subtitle: AI project and original game based on chess
+    date: 2018 05 05
+    tags: [Team, Game, Unity, C#, Scripting, AI]
+    mainimage: asymars2.png
+  - banished_parser:
+    filename: banished_parser
+    title: Banished Parser
+    subtitle: OCR tool to parse and record data from the game *Banished*
+    date: 2019 09 01
+    tags: [Solo, Tool, JS, AI]
+    confidence: Very likely
+    mainimage: banished2.png
+  - charbble:
+    filename: charbble
+    title: Charbble
+    subtitle: Rouge-like puzzle game influenced by *Scrabble* and crosswords
+    date: 2017 12 14
+    tags: [Solo, Game, Unity, C#, Scripting, Design]
+    confidence: Possible
+    mainimage: charbble1.png
+  - mazito:
+    filename: mazito
+    title: Mazito
+    subtitle: Simple rogue-like game made for the web
+    date: 2019 05 01
+    tags: [Solo, Game, JS, Scripting, Design]
+    mainimage: mazito1.png
+  - oddestsea:
+    filename: oddestsea
+    title: OddestSea
+    subtitle: Published, team developed indie game about sailing in a dark, eerie sea
+    date: 2020 05 01
+    tags: [Team, Game, Unity, C#, Scripting, Design, AI, Shaders]
+    confidence: Likely
+    mainimage: oddestsea2.png
+  - taps:
+    filename: taps
+    title: The Astro Parcel Service
+    subtitle: Development for *The Astro Parcel Service* (TAPS)
+    date: 2020 05 01
+    tags: [Team, Game, Unity, C#, Scripting, AI]
+    mainimage: taps1.png
+  - tumble_blocks:
+    filename: tumble_blocks
+    title: Tumble Blocks
+    subtitle: Spatial puzzle game with tumbling blocks
+    date: 2018 06 01
+    tags: [Team, Game, Unity, C#, Scripting, Math, Design]
+    mainimage: tumbleblock3.png

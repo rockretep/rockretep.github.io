@@ -1,0 +1,20 @@
+#! /usr/bin/lua
+
+-- function file_exists(file)
+-- 	local fh = io.open(file, "rb")
+-- 	if fh then fh:close() end
+-- 	return fh ~= nil
+-- end
+-- if not file_exists(file) then return {} end
+
+local fht = io.open("includes/templated/portfolio.html", "rb")
+local htc = fht:read("*a")
+htc = "```{=html}\n" .. htc .. "\n```"
+fht:close()
+
+local file = ...
+
+local fh = io.open(file, "rb")
+local contents = fh:read("*a"):gsub("$foo",htc)
+io.close(fh)
+io.stdout:write(contents)

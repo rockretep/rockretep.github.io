@@ -1,0 +1,205 @@
+@import url(/fonts/Serif/cmun-serif.css);
+@import url(/fonts/Sans/cmun-sans.css);
+@import url(/fonts/Typewriter/cmun-typewriter.css);
+body {
+  font-family: "Computer Modern Serif", serif;
+  font-size: 1em;
+  max-width: 64em;
+  padding-left: 2%;
+  padding-right: 2%;
+  margin: 0 auto;
+  height: 100%;
+  background: #f5f5f5; }
+
+header {
+  margin-bottom: 1em;
+  text-align: center; }
+
+footer {
+  position: relative;
+  bottom: 0em;
+  width: 100%;
+  padding-top: 2em;
+  font-size: 0.8em; }
+
+a {
+  color: #000000;
+  font-weight: bold; }
+
+img {
+  border: none;
+  margin: 0.8em; }
+
+p {
+  margin-top: 0em;
+  margin-bottom: 1em;
+  text-align: justify; }
+
+sup {
+  vertical-align: 0.5em;
+  font-size: 0.5em; }
+
+article img {
+  width: 100%;
+  height: auto; }
+
+article img[src*="left"] {
+  float: left;
+  margin-left: 0em; }
+  article img[src*="left"] ~ figcaption {
+    float: left; }
+
+article img[src*="right"] {
+  float: right;
+  margin-right: 0em; }
+  article img[src*="right"] ~ figcaption {
+    float: right; }
+
+article img[src*="small"] {
+  width: 33%;
+  height: 33%; }
+  article img[src*="small"] ~ figcaption {
+    width: 33%;
+    height: 33%; }
+
+article img[src*="medium"] {
+  width: 50%;
+  height: 50%; }
+  article img[src*="medium"] ~ figcaption {
+    width: 50%;
+    height: 50%; }
+
+address {
+  font-style: inherit; }
+  address ul, address li {
+    margin-bottom: 0;
+    margin-top: 0; }
+  address ul {
+    list-style-type: none;
+    padding: 0; }
+  address li {
+    display: inline-block; }
+
+pre code {
+  display: block;
+  font-family: "Computer Modern Typewritter", monospace;
+  font-size: 1em;
+  background-color: #ffffff;
+  border: solid;
+  border-width: 0.04em;
+  border-color: #000000;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 2%;
+  overflow: scroll; }
+
+blockquote {
+  background-color: #cccccc;
+  border: dashed 0.016em #808080;
+  width: 98%;
+  font-style: italic;
+  text-align: justify;
+  padding: 1em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  margin: 0em;
+  margin-bottom: 2em; }
+
+blockquote div {
+  text-transform: none;
+  text-align: right;
+  width: 100%; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.1em;
+  line-height: 1.1em; }
+
+h1 {
+  font-size: 2.5em; }
+
+h2 {
+  font-size: 2em; }
+
+h3 {
+  font-size: 1.5em; }
+
+h4 {
+  font-size: 1.3em; }
+
+h5 {
+  font-size: 1.2em; }
+
+h6 {
+  font-size: 1.1em; }
+
+@media (max-width: 500px) {
+  * {
+    font-size: 12px; }
+  pre {
+    font-size: 11px; } }
+
+.hidden {
+  display: none; }
+
+.center {
+  text-align: center; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 8em;
+  grid-gap: 0.8em; }
+
+.tile {
+  display: flex;
+  position: relative;
+  width: auto;
+  border: solid 0.016em #000000;
+  overflow: hidden;
+  text-decoration: none;
+  font-size: 0.8em; }
+  .tile .thumbnail {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    width: 33%;
+    border-right: 1em; }
+  .tile .content {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin: 0.8em;
+    margin-bottom: 0em;
+    text-align: justify;
+    font-weight: normal; }
+
+.post-info {
+  display: block;
+  font-size: 0.9em;
+  font-weight: lighter;
+  margin-bottom: 0.8em; }
+
+.title {
+  font-family: "Computer Modern Sans", sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  display: inline-block; }
+
+.logo {
+  display: block;
+  width: 100%;
+  height: 4em;
+  background: url("/images/avatar.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: 0.8em;
+  margin-bottom: -0.8em; }
+
+.spanpart {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; }

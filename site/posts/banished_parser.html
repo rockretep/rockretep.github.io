@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="generator" content="pandoc" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Peter Francis</title>
+	<link rel="stylesheet" type="text/css" href="/css/main.css"/>
+	<link rel="icon" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+</head>
+
+<header>
+	<div class="title">
+		<a class="logo" href="/"></a>
+		<br>
+		<a href="/">Peter Francis</a>
+		<br>
+		<hr>
+		<nav>
+			<a href="/about.html">About</a>
+			&nbsp;
+			<a href="/francis_peter_resume.pdf">Résumé</a>
+			&nbsp;
+			<a href="/about.html#contact">Contact</a>
+			&nbsp;
+			<a href="/sitemap.html">Sitemap</a>
+		</nav>
+	</div>
+</header>
+<article>
+    <section id="title">
+		<div class="spanpart">
+		<div class="post-info">
+			2019 09 01
+			<br>
+							<span class="tag">Solo</span>
+							<span class="tag">Tool</span>
+							<span class="tag">JS</span>
+							<span class="tag">AI</span>
+					</div>
+		Very likely
+		</div>
+		<h2>Banished Parser</h2>
+		<hr>
+    </section>
+    <section id="body">
+        <p>I was contracted to design and develop a tool to help students in a game statistics and data analysis class. Students needed to be able to record data from the game <a href="http://www.shiningrocksoftware.com/game/"><em>Banished</em></a> <img src="/images/banished.png#right#small" /></p>
+        <p>At first I thought this would be a fairly simple task, as <em>Banished</em> provides a modding API. I thought I could easily extract information via the API, but it turned out that the game didn’t practically allow for this.</p>
+        <p>My next thought was to try and use the game’s save files as a source for the data, since students only needed ‘snapshots’ of the game state, rather than a continuous stream of data. Unfortunately, the save files were in a binary format, and despite my efforts to crack the format, I couldn’t consistently get the pertinent data from the files.</p>
+        <p>My next option was to scrape the relevant information from from screenshots using OCR (optical character recognition) software. This was a less than desirable option, given the many more steps required to get the data, and the introduction of potential inaccuracy in the data collected.</p>
+        <pre><code>function processScreenshot(e) {
+            let t = cv.imread(e);
+            let n = new cv.Mat;
+            let r = new cv.Size(
+                BASEREGION.width * UPSCALE * BASESCALE, 
+                BASEREGION.height * UPSCALE * BASESCALE);
+            cv.cvtColor(t, t, cv.COLOR_RGBA2GRAY, 0),
+            t = t.roi(scaleRect(new cv.Rect(0, 0, 300, 170), BASESCALE)),
+            cv.resize(t, t, r, 0, 0, cv.INTER_AREA),
+            cv.bilateralFilter(t, n, 11, 12, 12, cv.BORDER_DEFAULT),
+            t.delete(),
+            cv.threshold(n, n, 122, 255, cv.THRESH_BINARY),
+            cv.bitwise_not(n, n),
+            cv.medianBlur(n, n, 3),
+            cv.imshow(&quot;imageOut&quot;, n),
+            n.delete()
+        }</code></pre>
+        <p><img src="/images/banished2.png" /></p>
+        <pre><code>function levenshteinDistance(e, t) {
+            var n = e.length,
+                r = t.length,
+                o = createArray(n + 1, r + 1);
+            if (0 == n) return r;
+            if (0 == r) return n;
+            for (i = 0; i &lt;= n; o[i][0] = i++);
+            for (j = 0; j &lt;= r; o[0][j] = j++);
+            for (i = 1; i &lt;= n; i++)
+                for (j = 1; j &lt;= r; j++) {
+                    let n = t[j - 1] == e[i - 1] ? 0 : 1;
+                    o[i][j] = Math.min(
+                        Math.min(o[i - 1][j] + 1, o[i][j-1] + 1), 
+                        o[i - 1][j - 1] + n)
+                }
+            return o[n][r]
+        }</code></pre>
+    </section>
+</article>
+<footer>
+	<hr>
+	<div class="spanpart">
+	<span class="author" id="year">
+		&copy; Peter Francis
+	</span>
+	<span class="links">
+		<address id="contact">
+		<ul>
+			<li>
+			<a href="mailto:peter@rockretep.net">peter@rockretep.net</a>
+			</li>
+			<li>
+			<a target="_blank" rel="external" href="https://github.com/rockretep">Github</a>
+			</li>
+			<li>
+			<a target="_blank" rel="external" href="https://www.linkedin.com/in/peter-francis-042196176">LinkedIn</a>
+			</li>
+		</ul>
+		</address>
+	</span>
+	</div>
+	<hr>
+	<div class="center">*</div>
+</footer>
+</html>

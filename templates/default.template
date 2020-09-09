@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+$for(header-includes)$
+$header-includes$
+$endfor$
+<body>
+	$for(include-before)$
+	$include-before$
+	$endfor$
+	<main>
+	$body$
+	</main>
+	$for(include-after)$
+	$include-after$
+	$endfor$
+</body>
+</html>
