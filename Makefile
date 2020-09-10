@@ -159,7 +159,7 @@ $(SITE)/css/main.css: $(SOURCE)/css/main.scss
 # STATIC FILES
 ##############
 $(ASSET_FILES): $(wildcard $(ASSET)/*)
-	cp -r $(ASSET)/* $(SITE)
+	cp -ru $(ASSET)/. $(SITE)
 
 #########
 # SITEMAP
@@ -194,6 +194,9 @@ clean:
 ########
 server:
 	python -m http.server -d site/
+
+publish:
+	git subtree push --prefix site origin gh-pages
 
 rebuild: clean all
 
