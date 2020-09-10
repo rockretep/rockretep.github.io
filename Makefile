@@ -12,7 +12,6 @@ BASEURL             := https://www.rockretep.net
 SOURCE		:= source
 ASSET		:= assets
 SITE		:= site
-CSS			:= css
 INCLUDE		:= includes
 IN_TM		:= includes/templated
 TEMPLATE	:= templates
