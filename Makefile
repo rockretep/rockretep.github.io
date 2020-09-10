@@ -196,13 +196,6 @@ clean:
 server:
 	python -m http.server -d site/
 
-#####
-# GIT
-#####
-
-publish:
-	git switch site && git checkout master site/*
-
 rebuild: clean all
 
 # PHONY targets
