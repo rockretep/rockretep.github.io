@@ -1,0 +1,94 @@
+body {
+	margin:1em auto;
+	max-width:40em;
+	padding:0 .62em;
+	font:1.2em/1.62 sans-serif;
+}
+
+h1,h2,h3 {
+	line-height:1.2;
+}
+
+div {
+	margin-bottom:10px;
+}
+
+@media print {
+	body {
+		max-width:none;
+	}
+}
+
+.accordion {
+	font:inherit;
+	font-size:inherit;
+	cursor:pointer;
+	background:white;
+	width:100%;
+	text-align:left;
+	border:none;
+	outline:none;
+	transition:0.4s;
+}
+
+.active, .accordion:hover {
+	background-color:#ccc;
+}
+
+.panel {
+	padding: 0 18px;
+	background-color: white;
+	display: none;
+	overflow: hidden;
+}
+
+#loadingSpin {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 1;
+	width: 150px;
+	height: 150px;
+	margin: -75px 0 0 -75px;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #1f1f1f;
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+}
+
+#loadingText {
+	position: relative;
+	text-align: center;
+	margin-top: 25%;
+}
+
+@-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+.animate-bottom {
+position: relative;
+-webkit-animation-name: animatebottom;
+-webkit-animation-duration: 1s;
+animation-name: animatebottom;
+animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+	from { bottom:-100px; opacity:0 }
+	to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+	from{ bottom:-100px; opacity:0 }
+	to{ bottom:0; opacity:1 }
+}
