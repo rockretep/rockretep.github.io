@@ -16,12 +16,10 @@ mainimage: charbble1.png
 generated word puzzles based on the letters in the player's current inventory. These mechanics work together to create an interesting dynamic by
 requiring the player to manage their letter inventory in a way that will enable them to continue building words.
 
-![][char2]
-
 **WORK IN PROGRESS...**
 
 [char1]: /images/charbble2.png "charbble1"
-	loading="lazy" option="left small"
+	loading="lazy" option="right small"
 
 [char2]: /images/charbble2.png "charbble2"
 	loading="lazy" option="right small"
