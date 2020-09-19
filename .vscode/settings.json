@@ -6,8 +6,5 @@
 		"markdown",
 		"latex",
 		"plaintext"
-	],
-	"Lua.diagnostics.globals": [
-		"pandoc"
 	]
 }

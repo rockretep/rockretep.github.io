@@ -12,6 +12,7 @@ posts:
     subtitle: AI project and original game based on chess
     date: 2018 05 05
     tags: [Team, Game, Unity, C#, Scripting, AI]
+    confidence: Certain
     mainimage: asymars2.png
   - banished_parser:
     filename: banished_parser
@@ -19,7 +20,7 @@ posts:
     subtitle: OCR tool to parse and record data from the game *Banished*
     date: 2019 09 01
     tags: [Solo, Tool, JS, AI]
-    confidence: Very likely
+    confidence: Likely
     mainimage: banished2.png
   - charbble:
     filename: charbble
@@ -29,12 +30,13 @@ posts:
     tags: [Solo, Game, Unity, C#, Scripting, Design]
     confidence: Possible
     mainimage: charbble1.png
-  - mazito:
-    filename: mazito
-    title: Mazito
+  - heartmelt:
+    filename: heartmelt
+    title: Heartmelt
     subtitle: Simple rogue-like game made for the web
     date: 2019 05 01
     tags: [Solo, Game, JS, Scripting, Design]
+    confidence: Unlikely
     mainimage: mazito1.png
   - oddestsea:
     filename: oddestsea
@@ -57,4 +59,5 @@ posts:
     subtitle: Spatial puzzle game with tumbling blocks
     date: 2018 06 01
     tags: [Team, Game, Unity, C#, Scripting, Math, Design]
+    completion: Likely
     mainimage: tumbleblock3.png

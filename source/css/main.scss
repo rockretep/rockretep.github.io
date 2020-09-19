@@ -58,15 +58,23 @@ $font-size:		$unit;
 $page-width:	$unit64;
 $tileSize:		$unit8;
 
-body {
+html {
 	font-family: $font-serif;
 	font-size: $font-size;
-	max-width: $page-width;  
+	background: $background-color;
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	//align-items: center;
+	position: relative;
+	min-height: 100%;
+	width: $page-width;
 	padding-left: 2%;
 	padding-right: 2%;
 	margin: 0 auto;
-	height: 100%;
-	background: $background-color;
 }
 
 header {
@@ -76,10 +84,16 @@ header {
 
 footer {
 	position: relative;
-	bottom: 0em;
 	width: 100%;
-	padding-top: $unit2;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin-top: $unit2;
 	font-size: 0.8em;
+}
+
+main, article {
+	flex: 1 1 auto;
 }
 
 a {
@@ -89,7 +103,8 @@ a {
 
 img {
 	border: none;
-	margin: 0.8em;
+	margin: $unit;
+	margin-top: 0em;
 }
 
 p {
@@ -103,56 +118,58 @@ sup {
 	font-size: $unit_2;
 }
 
+figure {
+	display: block;
+	text-align: center;
+	margin: 1em 0;
+}
+
+figure img {
+	border: none;
+	margin: 0 auto;
+}
+
+figcaption {
+	display: inline;
+	font-size: 0.8em;
+	font-style: italic;
+	margin: 0 0 .8em;
+}
+
 article {
-	img {
-		width: 100%;
-		height: auto;
-	}
-	img[src*="left"] {
-		~ figcaption {
-			float: left;
-		}
-		float: left;
-		margin-left: 0em;
-	}
-	img[src*="right"] {
-		~ figcaption {
-			float: right;
-		}
+	img[data-option~="right"] {
 		float: right;
 		margin-right: 0em;
 	}
-	img[src*="small"] {
-		~ figcaption {
-			width: 33%;
-			height: 33%;
-		}
-		width: 33%;
-		height: 33%;
+	img[data-option~="left"] {
+		float: left;
+		margin-left: 0em;
 	}
-	img[src*="medium"] {
-		~ figcaption {
-			width: 50%;
-			height: 50%;
-		}
+	img[data-option~="tiny"] {
+		width: 16%;
+		height: 16%;
+	}
+	img[data-option~="small"] {
+		width: 32%;
+		height: 32%;
+	}
+	img[data-option~="medium"] {
 		width: 50%;
 		height: 50%;
+	}
+	img[data-option~="large"] {
+		width: 64%;
+		height: 64%;
+	}
+	img[data-option~="huge"] {
+		width: 80%;
+		height: 80%;
 	}
 }
 
 address {
 	font-style: inherit;
-	ul, li {
-		margin-bottom: 0;
-		margin-top: 0;
-	  }
-	  ul {
-		  list-style-type: none;
-		  padding: 0;
-	  }
-	  li {
-		display: inline-block;
-	}
+	font-family: $font-monospace;
 }
 
 pre code {
@@ -169,7 +186,7 @@ pre code {
 	overflow: scroll;
 }
 
-blockquote { 
+blockquote {
 	background-color: $gray-lighter;
 	border: dashed $unit_16 $gray;
 	width: 98%;
@@ -204,13 +221,13 @@ h6 {font-size: 1.1em;}
 // Small media / mobile
 @media (max-width: 500px) {
 	* {
-		font-size: 12px; 
+		font-size: 12px;
 	}
 	pre {
-		font-size: 11px;  
+		font-size: 11px;
 	}
-}   
-  
+}
+
 .hidden {
 	display: none;
 }

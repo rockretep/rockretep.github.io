@@ -1,0 +1,106 @@
+<meta charset="UTF-8">
+<html>
+	<head>
+		<script src='https://unpkg.com/tesseract.js@v2.0.0-alpha.13/dist/tesseract.min.js'></script>
+		<script src='./opencv.js'></script>
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<!-- <link rel="stylesheet" type="text/css" href="bootstrap.min.css"> -->
+		<title>Banished Parser</title>
+	</head>
+	<body>
+		<header><h1>Banished Parser</h1></header>
+		<hr>
+		<div>
+			<button class="accordion"><h3>Information</h3></button>
+			<div class="panel">
+				<p>
+					This tool is for parsing statistics from the user interface of the game <a href="http://www.shiningrocksoftware.com/game/">Banished</a>. Screenshots are used to read the statistics from the UI. The data is serialized and saved into JSON files, which are easily imported into spreadsheet formats like Excel.
+				</p>
+				<button class="accordion"><h5>Instructions</h5></button>
+				<div class="panel">
+					<p>
+						To gather parse data from the game, you need screenshots. Screenshots are effectively records of the game's state. After you have screenshots, you can upload them to the Banished Parser tool here to parse and download the data.
+						<br>
+						This tool relies on a specific user interface setup in order to work.
+						<ul>
+							<li>Options>Game>User interface scale set to 75 <sub>(all the way to the left)</sub></li>
+							<li>Town statistics panel on, not obscured, and in the default position <sub>(top-left corner of the screen)</sub>
+							</li>
+							<li>Game window is in fullscreen</li>
+						</ul>
+						Currently this tool only works on a 1920x1080 resolution.
+						<br>
+						You can use <a href="./AutoBanishedScreenshotKey.exe">this auto-hotkey tool</a> that automatically presses the default screenshot key for the game every 5 minutes. When you run it, an "H" icon should appear in the icon toolbar. Right click on the icon and select "Exit" to stop the script.
+					</p>
+				</div>
+				<button class="accordion"><h5>Statistics parsed</h5></button>
+				<div class="panel">
+					<ul>
+						<li>Time<sub> (Date/Time captured, <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a> format)</sub></li>
+						<li>Season<sub> (In-game season)</sub></li>
+						<li>Year<sub> (Integer In-game year)</sub></li>
+						<li>
+							Population:
+							<br>
+							<sub>(Integer quantity)</sub>
+							<ul>
+								<li>Total Population</li>
+								<li>Adults</li>
+								<li>Students</li>
+								<li>Children</li>
+							</ul>
+						</li>
+						<li>
+							Resources:
+							<br>
+							<sub>(Integer quantity)</sub>
+							<ul>
+								<li>Log</li>
+								<li>Stone</li>
+								<li>Iron</li>
+								<li>Firewood</li>
+								<li>Coal</li>
+								<li>Tool</li>
+								<li>Food</li>
+								<li>Herb</li>
+								<li>Coat</li>
+								<li>Ale</li>
+								<li>Leather</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<form method="post" enctype="multipart/form-data">
+			<h3>Upload</h3>
+			<div>
+				<label for="file">Choose screenshots to upload...</label>
+				<input id="fileInput" type="file" name="file" accept=".jpg" multiple>
+			</div>
+			<div>
+				<button id="submitButton" type="button" disabled>Submit</button>
+			</div>
+		</form>
+		<hr>
+		<div>
+			<h3>Download</h3>
+			<div>
+				<button id="downloadButton" hidden>Download All</button>
+			</div>
+			<div id="downloads" class="animate-bottom" hidden></div>
+		</div>
+		<div id="loading" hidden>
+			<div><div id="loadingSpin"></div></div>
+			<div><p id="loadingText"></p></div>
+		</div>
+
+		<div id="image">
+			<img id="imageSrc" alt="No Image" style="display: none;"/>
+			<canvas id="imageOut" style="display: none;"></canvas>
+		</div>
+	</body>
+	<!-- LOAD AFTER -->
+	<script src='./parser.min.js'></script>
+</html>

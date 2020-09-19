@@ -1,0 +1,13 @@
+#!/bin/bash
+
+FILE="${1:-/dev/stdin}"
+
+PORTFOLIO_FILE='./includes/templated/portfolio.html'
+CONTACT_FILE='./includes/contact.html'
+
+PORTFOLIO='```{=html}\n'$(cat $PORTFOLIO_FILE)'\n```'
+CONTACT='```{=html}\n'$(cat $CONTACT_FILE)'\n```'
+
+CONTENTS=$(awk -v PF="${PORTFOLIO}" -v C="${CONTACT}" '{gsub(/\$portfolio/,PF)} {gsub(/\$contact/,C)} {print}' $FILE)
+
+echo -e "${CONTENTS}"

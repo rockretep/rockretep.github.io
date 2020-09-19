@@ -14,7 +14,7 @@ I want the framework small, simple, and general-purpose. I admire the __[suckles
 - State Machines
 	- Basic finite state machines
 	- Hierarchical state machines
-	- Parameters for states
+	- Parameters for state `Enter` and `Exit` procedures
 - Behavior trees
-	- Utilized
 
+**WORK IN PROGRESS...**

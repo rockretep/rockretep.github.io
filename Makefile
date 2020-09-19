@@ -38,8 +38,8 @@ IN_TM_FILES	:= $(subst $(TM_IN),$(IN_TM),$(patsubst %.template,%.html,$(TM_IN_FI
 ##############
 # SCRIPT FILES
 ##############
-META_SCRIPT	:= script/genyaml
-PRE_SCRIPT	:= script/preprocess
+META_SCRIPT	:= script/get_meta
+PRE_SCRIPT	:= script/pre_include
 
 #############
 # OTHER FILES
@@ -79,7 +79,7 @@ PREPROCESS	:= $(PRE_SCRIPT)
 # PARSER OPTIONS
 ################
 BASE_FLAGS := \
-			--from markdown+yaml_metadata_block \
+			--from markdown_mmd+yaml_metadata_block+mmd_link_attributes \
 			--to html \
 			--standalone
 
@@ -144,7 +144,7 @@ $(SITE)/index.html: $(SOURCE)/index.md $(DEFAULT_DEPENDS)
 	$(PREPROCESS) $< | $(PANDOC) $(DEFAULT_FLAGS) --output $@
 
 $(SITE)/about.html: $(SOURCE)/about.md $(DEFAULT_DEPENDS)
-	$(PANDOC) $(DEFAULT_FLAGS) --output $@ $<
+	$(PREPROCESS) $< | $(PANDOC) $(DEFAULT_FLAGS) --output $@
 
 $(SITE)/posts/%.html: $(SOURCE)/posts/%.md $(POST_DEPENDS)
 	$(PANDOC) $(POST_FLAGS) --output $@ $<
@@ -193,7 +193,7 @@ clean:
 # SERVER
 ########
 server:
-	python -m http.server -d site/
+	sudo quark -p 8000 -d site/ -g peter &
 
 publish:
 	git subtree push --prefix site origin gh-pages

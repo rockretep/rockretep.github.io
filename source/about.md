@@ -6,11 +6,12 @@ title: Peter Francis
 
 ---
 
-My Na
+My name is Peter Francis. I'm a programmer with a special interest in artificial intelligence. I'm also very interested in game development. I've been programming and making games (or small interactive experiences) for nearly 10 years now.
 
-Game and Software Developer. I have a special interest in artificial intelligence. I like playing and making games, programming things, and exploring math and science.
+I got into game development and programming by running game servers for friends when I was about 12.
 
 #### Contact
 
 ---
 
+$contact

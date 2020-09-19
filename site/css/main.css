@@ -1,15 +1,21 @@
 @import url(/fonts/Serif/cmun-serif.css);
 @import url(/fonts/Sans/cmun-sans.css);
 @import url(/fonts/Typewriter/cmun-typewriter.css);
-body {
+html {
   font-family: "Computer Modern Serif", serif;
   font-size: 1em;
-  max-width: 64em;
+  background: #f5f5f5;
+  height: 100%; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100%;
+  width: 64em;
   padding-left: 2%;
   padding-right: 2%;
-  margin: 0 auto;
-  height: 100%;
-  background: #f5f5f5; }
+  margin: 0 auto; }
 
 header {
   margin-bottom: 1em;
@@ -17,10 +23,15 @@ header {
 
 footer {
   position: relative;
-  bottom: 0em;
   width: 100%;
-  padding-top: 2em;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-top: 2em;
   font-size: 0.8em; }
+
+main, article {
+  flex: 1 1 auto; }
 
 a {
   color: #000000;
@@ -28,7 +39,8 @@ a {
 
 img {
   border: none;
-  margin: 0.8em; }
+  margin: 1em;
+  margin-top: 0em; }
 
 p {
   margin-top: 0em;
@@ -39,46 +51,52 @@ sup {
   vertical-align: 0.5em;
   font-size: 0.5em; }
 
-article img {
-  width: 100%;
-  height: auto; }
+figure {
+  display: block;
+  text-align: center;
+  margin: 1em 0; }
 
-article img[src*="left"] {
-  float: left;
-  margin-left: 0em; }
-  article img[src*="left"] ~ figcaption {
-    float: left; }
+figure img {
+  border: none;
+  margin: 0 auto; }
 
-article img[src*="right"] {
+figcaption {
+  display: inline;
+  font-size: 0.8em;
+  font-style: italic;
+  margin: 0 0 .8em; }
+
+article img[data-option~="right"] {
   float: right;
   margin-right: 0em; }
-  article img[src*="right"] ~ figcaption {
-    float: right; }
 
-article img[src*="small"] {
-  width: 33%;
-  height: 33%; }
-  article img[src*="small"] ~ figcaption {
-    width: 33%;
-    height: 33%; }
+article img[data-option~="left"] {
+  float: left;
+  margin-left: 0em; }
 
-article img[src*="medium"] {
+article img[data-option~="tiny"] {
+  width: 16%;
+  height: 16%; }
+
+article img[data-option~="small"] {
+  width: 32%;
+  height: 32%; }
+
+article img[data-option~="medium"] {
   width: 50%;
   height: 50%; }
-  article img[src*="medium"] ~ figcaption {
-    width: 50%;
-    height: 50%; }
+
+article img[data-option~="large"] {
+  width: 64%;
+  height: 64%; }
+
+article img[data-option~="huge"] {
+  width: 80%;
+  height: 80%; }
 
 address {
-  font-style: inherit; }
-  address ul, address li {
-    margin-bottom: 0;
-    margin-top: 0; }
-  address ul {
-    list-style-type: none;
-    padding: 0; }
-  address li {
-    display: inline-block; }
+  font-style: inherit;
+  font-family: "Computer Modern Typewritter", monospace; }
 
 pre code {
   display: block;
