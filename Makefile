@@ -79,7 +79,7 @@ PREPROCESS	:= $(PRE_SCRIPT)
 # PARSER OPTIONS
 ################
 BASE_FLAGS := \
-			--from markdown_mmd+yaml_metadata_block+mmd_link_attributes \
+			--from markdown_mmd+yaml_metadata_block+mmd_link_attributes+tex_math_dollars \
 			--to html \
 			--standalone
 
@@ -104,6 +104,7 @@ POST_FLAGS  := \
 			$(BASE_FLAGS) \
 			--template $(TEMPLATE)/post.template \
 			$(DEFAULT_INCLUDE_FLAGS) \
+			--mathml \
 			--strip-comments
 
 ###############
@@ -188,12 +189,6 @@ clean:
 	echo $(CSS_FILES)
 	rm -rf $(SITE)/*
 	rm -f $(IN_TM)/*
-
-########
-# SERVER
-########
-server:
-	sudo quark -p 8000 -d site/ -g peter &
 
 publish:
 	git subtree push --prefix site origin gh-pages

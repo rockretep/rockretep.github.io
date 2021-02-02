@@ -5,16 +5,16 @@
 /////////
 // Colors
 /////////
-$black: #000000;
+$black:			#000000;
 // sadly 100 is not evenly divisible by 7
-$gray-darkest: #0a0a0a;
-$gray-darker: #292929;
-$gray-dark: #525252;
-$gray: #808080;
-$gray-light: #a3a3a3;
-$gray-lighter: #cccccc;
-$gray-lightest: #f5f5f5;
-$white: #ffffff;
+$gray-darkest:	#0a0a0a;
+$gray-darker:	#292929;
+$gray-dark:		#525252;
+$gray:			#808080;
+$gray-light:	#a3a3a3;
+$gray-lighter:	#cccccc;
+$gray-lightest:	#f5f5f5;
+$white:			#ffffff;
 $text-color: $black;
 $background-color: $gray-lightest;
 $linkColor: $gray-dark;
@@ -24,11 +24,11 @@ $linkVisitedColor: $gray-light;
 // Fonts
 ////////
 // "Computer Modern Serif"
-$font-serif: "Computer Modern Serif", serif;
+$font-serif:		"Computer Modern Serif", serif;
 // "Computer Modern Sans"
-$font-sans: "Computer Modern Sans", sans-serif;
+$font-sans:			"Computer Modern Sans", sans-serif;
 //"Computer Modern Typewriter"
-$font-monospace: "Computer Modern Typewritter", monospace;
+$font-monospace:	"Computer Modern Typewritter", monospace;
 
 ////////
 // Units
@@ -102,6 +102,7 @@ a {
 }
 
 img {
+	display: block;
 	border: none;
 	margin: $unit;
 	margin-top: 0em;
@@ -136,6 +137,12 @@ figcaption {
 	margin: 0 0 .8em;
 }
 
+math {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 article {
 	img[data-option~="right"] {
 		float: right;
@@ -144,6 +151,10 @@ article {
 	img[data-option~="left"] {
 		float: left;
 		margin-left: 0em;
+	}
+	img[data-option~="center"] {
+		margin-left: auto;
+  		margin-right: auto;
 	}
 	img[data-option~="tiny"] {
 		width: 16%;
@@ -224,7 +235,7 @@ h6 {font-size: 1.1em;}
 		font-size: 12px;
 	}
 	pre {
-		font-size: 11px;
+ font-size: 11px;
 	}
 }
 
@@ -269,11 +280,16 @@ h6 {font-size: 1.1em;}
 	}
 }
 
+.tags {
+	font-weight: bold;
+}
+
 .post-info {
 	display: block;
 	font-size: 0.9em;
 	font-weight: lighter;
 	margin-bottom: 0.8em;
+	margin-top: 0.8em;
 }
 
 .title {
@@ -301,4 +317,8 @@ h6 {font-size: 1.1em;}
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
+}
+
+.clearfix {
+  overflow: auto;
 }

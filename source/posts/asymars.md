@@ -2,7 +2,7 @@
 filename: asymars
 title: Asymars
 subtitle: AI project and original game based on chess
-date: 2018 05 05
+date: 2018-05-05
 tags: [Team, Game, Unity, C#, Scripting, AI]
 confidence: Certain
 mainimage: asymars2.png

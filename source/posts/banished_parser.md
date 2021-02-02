@@ -2,7 +2,7 @@
 filename: banished_parser
 title: Banished Parser
 subtitle: OCR tool to parse and record data from the game *Banished*
-date: 2019 09 01
+date: 2019-09-01
 tags: [Solo, Tool, JS, AI]
 confidence: Likely
 mainimage: banished2.png
@@ -10,7 +10,7 @@ mainimage: banished2.png
 
 The working application can be found here:
 
-I was contracted to design and develop a tool to help students in a game statistics and data analysis class. Students needed to be able to record data from the game [*Banished*](http://www.shiningrocksoftware.com/game/)
+I was contracted to design and develop a tool to help students in a game statistics and data analysis class. Students needed to be able to record data from the game [*Banished*](http://www.shiningrocksoftware.com/game/).
 
 ![][bp1]
 
@@ -20,7 +20,7 @@ My next thought was to try and use the game's save files as a source for the dat
 
 My next option was to scrape the relevant information from screenshots using OCR (optical character recognition) software. This was a less than desirable option, due to the many more steps required to get the data, and the introduction of potential inaccuracy in the data collected. However, it was the only option I could think of at that point.
 
-I didn't want to rely on calls to OCR cloud services, like Microsoft Azure or Google Cloud, due to the cost and to have more direct interfacing with the API. I decided to use [tesseract.js](https://tesseract.projectnaptha.com) for OCR, in combination with [OpenCV](https://opencv.org) for pre-processing. Using tesseract.js also allowed for an easy maintainability for me and accessibility for students on a webpage; I didn't want to rely on distributing a multi-platform client to students.
+I didn't want to rely on calls to OCR cloud services, like Microsoft Azure or Google Cloud, due to the cost and to have more direct interfacing with the API. I decided to use [tesseract.js](https://tesseract.projectnaptha.com) for OCR, in combination with [OpenCV](https://opencv.org) for pre-processing. Using tesseract.js made the project more maintainable for me and allowed for students to access the tool on a webpage; I didn't want to distribute a multi-platform client to students.
 
 Since this tool has a very specific use-case, I didn't worry about trying to generalize to program to lower the constraints of the input data (widget location, resolution and scale, etc.). However, I still wanted to make the tool as painless to use; it wouldn't be a very good tool if it was difficult to use.
 

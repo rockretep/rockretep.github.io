@@ -2,7 +2,7 @@
 filename: charbble
 title: Charbble
 subtitle: Rouge-like puzzle game influenced by *Scrabble* and crosswords
-date: 2017 12 14
+date: 2017-12-14
 tags: [Solo, Game, Unity, C#, Scripting, Design]
 confidence: Possible
 mainimage: charbble1.png

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # WARNING: WHITESPACE SENSITIVE!
 
 FILES='./source/posts/*'
