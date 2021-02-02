@@ -38,6 +38,7 @@ a {
   font-weight: bold; }
 
 img {
+  display: block;
   border: none;
   margin: 1em;
   margin-top: 0em; }
@@ -66,6 +67,11 @@ figcaption {
   font-style: italic;
   margin: 0 0 .8em; }
 
+math {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto; }
+
 article img[data-option~="right"] {
   float: right;
   margin-right: 0em; }
@@ -73,6 +79,10 @@ article img[data-option~="right"] {
 article img[data-option~="left"] {
   float: left;
   margin-left: 0em; }
+
+article img[data-option~="center"] {
+  margin-left: auto;
+  margin-right: auto; }
 
 article img[data-option~="tiny"] {
   width: 16%;
@@ -192,11 +202,15 @@ h6 {
     text-align: justify;
     font-weight: normal; }
 
+.tags {
+  font-weight: bold; }
+
 .post-info {
   display: block;
   font-size: 0.9em;
   font-weight: lighter;
-  margin-bottom: 0.8em; }
+  margin-bottom: 0.8em;
+  margin-top: 0.8em; }
 
 .title {
   font-family: "Computer Modern Sans", sans-serif;
@@ -221,3 +235,6 @@ h6 {
   display: flex;
   justify-content: space-between;
   width: 100%; }
+
+.clearfix {
+  overflow: auto; }
