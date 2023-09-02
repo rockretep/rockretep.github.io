@@ -1,0 +1,6 @@
+#!/bin/sh
+
+DIR=$1
+
+
+nohup python -m http.server 8000 -d "$1" &

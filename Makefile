@@ -153,6 +153,7 @@ $(SITE)/posts/%.html: $(SOURCE)/posts/%.md $(POST_DEPENDS)
 ###########
 # CSS FILES
 ###########
+# Need sassc installed to compile CSS
 $(SITE)/css/main.css: $(SOURCE)/css/main.scss
 	sassc $< $@
 
