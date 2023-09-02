@@ -56,20 +56,32 @@
 		<hr>
     </section>
     <section id="body">
-        <p><em>Official website: <a href="https://www.oddestsea.com" class="uri">https://www.oddestsea.com</a></em></p>
-        <p><em>OddestSea</em> is a game about sailing in a dark, eerie sea, evading monsters, and restoring light to the mysterious waters. I worked to develop and publish OddestSea with a small team.</p>
+        <p><em>Official website: <a href="https://www.oddestsea.com"
+        class="uri">https://www.oddestsea.com</a></em></p>
+        <p><em>OddestSea</em> is a game about sailing in a dark, eerie
+        sea, evading monsters, and restoring light to the mysterious
+        waters. I worked to develop and publish OddestSea with a small
+        team.</p>
         <h2 id="contents">Contents</h2>
         <ol>
         <li><a href="#overview">Overview</a></li>
         <li><a href="#buoyancy-physics">Buoyancy Physics</a></li>
         <li><a href="#test">Test</a></li>
         </ol>
-        <p><img src="/images/oddestsea1.png" title="oddestsea1" loading="lazy" style="filter:brightness(1.5)" data-option="small right" /></p>
+        <p><img src="/images/oddestsea1.png" title="oddestsea1"
+        style="filter:brightness(1.5)" loading="lazy"
+        data-option="small right" /></p>
         <hr />
         <h2 id="overview">Overview</h2>
-        <p>I've always wanted to make a game about sailing. I started this project in summer of 2018 for my Game Design BS capstone course at Indiana University. With the help of many talented artists and others, it release on Steam and itch.io in March 2020.</p>
-        <p>This venture into game development has been my most involved yet, and also ridden with mistakes.</p>
-        <p>I've worked on a variety of tasks in the making of this game:</p>
+        <p>I've always wanted to make a game about sailing. I started
+        this project in summer of 2018 for my Game Design BS capstone
+        course at Indiana University. With the help of many talented
+        artists and others, it release on Steam and itch.io in March
+        2020.</p>
+        <p>This venture into game development has been my most involved
+        yet, and also ridden with mistakes.</p>
+        <p>I've worked on a variety of tasks in the making of this
+        game:</p>
         <ul>
         <li>Programming
         <ul>
@@ -94,50 +106,192 @@
         </ul></li>
         </ul>
         <h2 id="buoyancy-physics">Buoyancy Physics</h2>
-        <p>Simulating buoyancy has a range of routes to take. One method is to simply displace your "buoyant" object by the current height of the water, but this isn't very interesting, or dynamic at all. With OddestSea, I spent a lot of time researching, developing, and experimenting to find a method of simulating buoyancy to be realistic, but also still controllable. Ultimately, the balance between control and realism was the hardest thing to develop.</p>
-        <p>The basis of most of my work was from the excellent articles by Jacques Kerner: <a href="https://gamasutra.com/view/news/237528" class="uri">https://gamasutra.com/view/news/237528</a></p>
-        <p>I modified some systems and wrote my own code, but most of the theory is the same.</p>
+        <p>Simulating buoyancy has a range of routes to take. One method
+        is to simply displace your "buoyant" object by the current
+        height of the water, but this isn't very interesting, or dynamic
+        at all. With OddestSea, I spent a lot of time researching,
+        developing, and experimenting to find a method of simulating
+        buoyancy to be realistic, but also still controllable.
+        Ultimately, the balance between control and realism was the
+        hardest thing to develop.</p>
+        <p>The basis of most of my work was from the excellent articles
+        by Jacques Kerner: <a
+        href="https://gamasutra.com/view/news/237528"
+        class="uri">https://gamasutra.com/view/news/237528</a></p>
+        <p>I modified some systems and wrote my own code, but most of
+        the theory is the same.</p>
         <h3 id="overview-1">Overview</h3>
-        <p>The basic concept of the buoyancy is as follows: On a simplified <em>hull mesh</em>, like the one shown below, apply forces on the triangles of the mesh which are submerged in water.</p>
+        <p>The basic concept of the buoyancy is as follows: On a
+        simplified <em>hull mesh</em>, like the one shown below, apply
+        forces on the triangles of the mesh which are submerged in
+        water.</p>
         <figure>
-        <img src="/images/hullMesh.png" title="hullmesh" loading="lazy" data-option="medium center" alt="Simplified boat hull mesh, verticies=30, triangles=42" /><figcaption aria-hidden="true">Simplified boat hull mesh, verticies=30, triangles=42</figcaption>
+        <img src="/images/hullMesh.png" title="hullmesh" loading="lazy"
+        data-option="medium center"
+        alt="Simplified boat hull mesh, verticies=30, triangles=42" />
+        <figcaption aria-hidden="true">Simplified boat hull mesh,
+        verticies=30, triangles=42</figcaption>
         </figure>
-        <p>There are many details to do with how the hull mesh is processed, finding submerged triangles, calculating volumes, and applying forces. However, I will attempt to summarize the process. Here is a diagram that shows an overview of the process to apply buoyancy forces on the boat hull:</p>
+        <p>There are many details to do with how the hull mesh is
+        processed, finding submerged triangles, calculating volumes, and
+        applying forces. However, I will attempt to summarize the
+        process. Here is a diagram that shows an overview of the process
+        to apply buoyancy forces on the boat hull:</p>
         <h3 id="forces">Forces</h3>
-        <p>Here I will list the forces, and the parameters available to configure that can adjust the forces.</p>
-        <h4 id="buoyancy-archimedes-principle">Buoyancy Archimedes' principle</h4>
-        <p>This is the most fundamental force involved with the boat's physics. This force is applied to every submerged triangle; that is this force is applied to the boat on each triangle's normal vector to the surface <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>n</mi><mo accent="true">⃗</mo></mover><annotation encoding="application/x-tex">\overrightarrow{n}</annotation></semantics></math>.</p>
-        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>F</mi><mo accent="true">⃗</mo></mover><mrow><mi>b</mi><mi>u</mi><mi>o</mi><mi>y</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>y</mi></mrow></msub><mo>=</mo><mi>ρ</mi><mi>g</mi><mi>V</mi></mrow><annotation encoding="application/x-tex">\overrightarrow{F}_{buoyancy} = \rho g V</annotation></semantics></math></p>
-        <p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math> is the density of the medium (water), <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math> is the 'downwards' force of gravity, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math> is the volume of water above the triangle, defined as</p>
-        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mi>S</mi><mover><mi>n</mi><mo accent="true">⃗</mo></mover></mrow><annotation encoding="application/x-tex">z  S \overrightarrow{n}</annotation></semantics></math></p>
-        <p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math> is the distance from the triangle's center to the water's surface, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math> is the area of the triangle, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>n</mi><mo accent="true">⃗</mo></mover><annotation encoding="application/x-tex">\overrightarrow{n}</annotation></semantics></math> is the normal of the triangle.</p>
-        <p>Currently, there is not much here to configure outside of the internal physics calculations; its a fairly self-contained formula. The primary thing that is a variable in this formula is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>, the density of the water. Density being determined by <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mi>g</mi><mi>/</mi><msup><mi>m</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">kg/m^3</annotation></semantics></math>. At standard real-world conditions of temperature and pressure, the density of water is approximately <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1027</mn><annotation encoding="application/x-tex">1027</annotation></semantics></math>, which is what this parameter is set as in the game.</p>
+        <p>Here I will list the forces, and the parameters available to
+        configure that can adjust the forces.</p>
+        <h4 id="buoyancy-archimedes-principle">Buoyancy Archimedes'
+        principle</h4>
+        <p>This is the most fundamental force involved with the boat's
+        physics. This force is applied to every submerged triangle; that
+        is this force is applied to the boat on each triangle's normal
+        vector to the surface
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>n</mi><mo accent="true">→</mo></mover><annotation encoding="application/x-tex">\overrightarrow{n}</annotation></semantics></math>.</p>
+        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>F</mi><mo accent="true">→</mo></mover><mrow><mi>b</mi><mi>u</mi><mi>o</mi><mi>y</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>y</mi></mrow></msub><mo>=</mo><mi>ρ</mi><mi>g</mi><mi>V</mi></mrow><annotation encoding="application/x-tex">\overrightarrow{F}_{buoyancy} = \rho g V</annotation></semantics></math></p>
+        <p>where
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>
+        is the density of the medium (water),
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math>
+        is the 'downwards' force of gravity, and
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>
+        is the volume of water above the triangle, defined as</p>
+        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mi>S</mi><mover><mi>n</mi><mo accent="true">→</mo></mover></mrow><annotation encoding="application/x-tex">z  S \overrightarrow{n}</annotation></semantics></math></p>
+        <p>where
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>
+        is the distance from the triangle's center to the water's
+        surface,
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math>
+        is the area of the triangle, and
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>n</mi><mo accent="true">→</mo></mover><annotation encoding="application/x-tex">\overrightarrow{n}</annotation></semantics></math>
+        is the normal of the triangle.</p>
+        <p>Currently, there is not much here to configure outside of the
+        internal physics calculations; its a fairly self-contained
+        formula. The primary thing that is a variable in this formula is
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>,
+        the density of the water. Density being determined by
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mi>g</mi><mi>/</mi><msup><mi>m</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">kg/m^3</annotation></semantics></math>.
+        At standard real-world conditions of temperature and pressure,
+        the density of water is approximately
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1027</mn><annotation encoding="application/x-tex">1027</annotation></semantics></math>,
+        which is what this parameter is set as in the game.</p>
         <h4 id="resistance-coefficient">Resistance Coefficient</h4>
-        <p>While the Resistance Coefficient is not a force, it's a important factor in the viscous water resistance force. This coefficient uses an very important quantity from fluid dynamics called Reynolds number, or <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>, defined as the following:</p>
+        <p>While the Resistance Coefficient is not a force, it's a
+        important factor in the viscous water resistance force. This
+        coefficient uses an very important quantity from fluid dynamics
+        called Reynolds number, or
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>,
+        defined as the following:</p>
         <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi><mo>=</mo><mfrac><mrow><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">(</mo><mi>V</mi><mi>L</mi><mo minsize="1.2" maxsize="1.2" stretchy="false" form="postfix">)</mo></mrow><mrow><mi>n</mi><mi>u</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">Re = \frac{\big(V  L\big)}{nu}</annotation></semantics></math></p>
-        <p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math> is the velocity of the submerged body (in this case the velocity of the boat), <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math> is the length of the submerged body (the length of the boat's submerged volume), and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>u</mi></mrow><annotation encoding="application/x-tex">nu</annotation></semantics></math> is the viscosity of the fluid. Viscosity, defined as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>m</mi><mn>2</mn></msup><mi>/</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">m^2/s</annotation></semantics></math> is currently set to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.000001</mn><annotation encoding="application/x-tex">0.000001</annotation></semantics></math>, the average value for real-world water. The liquid viscosity is exposed to the editor and can be configured.</p>
+        <p>where
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>
+        is the velocity of the submerged body (in this case the velocity
+        of the boat),
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+        is the length of the submerged body (the length of the boat's
+        submerged volume), and
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>u</mi></mrow><annotation encoding="application/x-tex">nu</annotation></semantics></math>
+        is the viscosity of the fluid. Viscosity, defined as
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>m</mi><mn>2</mn></msup><mi>/</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">m^2/s</annotation></semantics></math>
+        is currently set to
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.000001</mn><annotation encoding="application/x-tex">0.000001</annotation></semantics></math>,
+        the average value for real-world water. The liquid viscosity is
+        exposed to the editor and can be configured.</p>
         <p>Now for the definition of the Resistance Coefficient:</p>
-        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>f</mi><mo>=</mo><mfrac><mn>0.075</mn><mrow><mo stretchy="false" form="prefix">(</mo><msub><mo>log</mo><mn>10</mn></msub><mrow><mi>R</mi><mi>n</mi></mrow><mo>−</mo><mn>2</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">Cf = \frac{0.075}{(\log_{10}{Rn}-2)^2}</annotation></semantics></math></p>
-        <p>There are a couple constants here that could be allowed to configure, but they are pretty essential to the definition of the coefficient.</p>
-        <h4 id="viscous-water-resistance-frictional-drag">Viscous Water Resistance (Frictional drag)</h4>
-        <p>Viscous water resistance is the frictional drag that occurs when a body (the boat) passes through the water, and the body drags the water along with itself.</p>
-        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>F</mi><mo accent="true">⃗</mo></mover><mrow><mi>v</mi><mi>i</mi><mi>s</mi><mi>c</mi><mi>o</mi><mi>u</mi><mi>s</mi></mrow></msub><mo>=</mo><mi>C</mi><mi>f</mi><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">(</mo><mn>0.5</mn><mi>ρ</mi><msup><mi>v</mi><mn>2</mn></msup><mi>S</mi><mo minsize="1.2" maxsize="1.2" stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\overrightarrow{F}_{viscous} = Cf\big(0.5  \rho  v^2  S\big)</annotation></semantics></math></p>
-        <p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math> is the density of the water, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>v</mi><annotation encoding="application/x-tex">v</annotation></semantics></math> is the speed of the submerged triangle, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math> is the area of the submerged triangle, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">Cf</annotation></semantics></math> is the resistance coefficient.</p>
-        <p>Nothing here can directly be configured, other than the liquid viscosity used in the resistance coefficient.</p>
+        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>f</mi><mo>=</mo><mfrac><mn>0.075</mn><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mo>log</mo><mn>10</mn></msub><mrow><mi>R</mi><mi>n</mi></mrow><mo>−</mo><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mfrac></mrow><annotation encoding="application/x-tex">Cf = \frac{0.075}{(\log_{10}{Rn}-2)^2}</annotation></semantics></math></p>
+        <p>There are a couple constants here that could be allowed to
+        configure, but they are pretty essential to the definition of
+        the coefficient.</p>
+        <h4 id="viscous-water-resistance-frictional-drag">Viscous Water
+        Resistance (Frictional drag)</h4>
+        <p>Viscous water resistance is the frictional drag that occurs
+        when a body (the boat) passes through the water, and the body
+        drags the water along with itself.</p>
+        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>F</mi><mo accent="true">→</mo></mover><mrow><mi>v</mi><mi>i</mi><mi>s</mi><mi>c</mi><mi>o</mi><mi>u</mi><mi>s</mi></mrow></msub><mo>=</mo><mi>C</mi><mi>f</mi><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">(</mo><mn>0.5</mn><mi>ρ</mi><msup><mi>v</mi><mn>2</mn></msup><mi>S</mi><mo minsize="1.2" maxsize="1.2" stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\overrightarrow{F}_{viscous} = Cf\big(0.5  \rho  v^2  S\big)</annotation></semantics></math></p>
+        <p>where
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>
+        is the density of the water,
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>v</mi><annotation encoding="application/x-tex">v</annotation></semantics></math>
+        is the speed of the submerged triangle,
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math>
+        is the area of the submerged triangle, and
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">Cf</annotation></semantics></math>
+        is the resistance coefficient.</p>
+        <p>Nothing here can directly be configured, other than the
+        liquid viscosity used in the resistance coefficient.</p>
         <h4 id="pressure-drag">Pressure Drag</h4>
-        <p>This is a very important force, primarily affecting turning and drift of the boat in the water. This force is split into two variants, which apply force on a triangle depending on a property <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>cos</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">\cos\theta</annotation></semantics></math>, the angle between the triangle's normal vector <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>n</mi><mo accent="true">⃗</mo></mover><annotation encoding="application/x-tex">\overrightarrow{n}</annotation></semantics></math> and its velocity <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>v</mi><mo accent="true">⃗</mo></mover><annotation encoding="application/x-tex">\overrightarrow{v}</annotation></semantics></math>, which is negative if pointing in the opposite direction, and positive if pointing in the same direction.</p>
-        <p>The definition for the drag that is a 'pressure' (positive <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>cos</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">\cos\theta</annotation></semantics></math>) is as follows:</p>
-        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>F</mi><mo accent="true">⃗</mo></mover><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>s</mi><mi>s</mi><mi>u</mi><mi>r</mi><mi>e</mi></mrow></msub><mo>=</mo><mo>−</mo><mo minsize="1.8" maxsize="1.8" stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>C</mi><mrow><mi>p</mi><mi>d</mi><mn>1</mn></mrow></msub><mfrac><mi>v</mi><msub><mi>v</mi><mi>r</mi></msub></mfrac><mo>+</mo><msub><mi>C</mi><mrow><mi>p</mi><mi>d</mi><mn>2</mn></mrow></msub><mo stretchy="false" form="prefix">(</mo><mfrac><mi>v</mi><msub><mi>v</mi><mi>r</mi></msub></mfrac><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo><mi>S</mi><mo>cos</mo><msup><mi>θ</mi><msub><mi>F</mi><mi>p</mi></msub></msup><mover><mi>n</mi><mo accent="true">⃗</mo></mover><mo minsize="1.8" maxsize="1.8" stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\overrightarrow{F}_{pressure} = -\Big((C_{pd1} \frac{v}{v_{r}} + C_{pd2} (\frac{v}{v_{r}})^2) S  \cos\theta^{F_{p}}  \overrightarrow{n}\Big)</annotation></semantics></math></p>
-        <p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>p</mi></msub><annotation encoding="application/x-tex">F_p</annotation></semantics></math> is the falloff power of the facing dot product (pressure), <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mrow><mi>p</mi><mi>d</mi><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">C_{pd1}</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mrow><mi>p</mi><mi>d</mi><mn>2</mn></mrow></msub><annotation encoding="application/x-tex">C_{pd2}</annotation></semantics></math> are linear and quadratic pressure drag coefficients, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>v</mi><mi>r</mi></msub><annotation encoding="application/x-tex">v_{r}</annotation></semantics></math> is a reference speed. The reference speed is to make it easier to tune the drag coefficients. The falloff power is very important. It controls how fast or slow the drag 'falls off' when the triangle's normal transition between parallel (peak drag force) and point velocity (no drag force). All of these are configurable in the editor.</p>
-        <p>The definition for the drag that is a 'suction' (negative <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>cos</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">\cos\theta</annotation></semantics></math>) is as follows:</p>
-        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>F</mi><mo accent="true">⃗</mo></mover><mrow><mi>s</mi><mi>u</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi></mrow></msub><mo>=</mo><mo minsize="1.8" maxsize="1.8" stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>C</mi><mrow><mi>s</mi><mi>d</mi><mn>1</mn></mrow></msub><mfrac><mi>v</mi><msub><mi>v</mi><mi>r</mi></msub></mfrac><mo>+</mo><msub><mi>C</mi><mrow><mi>s</mi><mi>d</mi><mn>2</mn></mrow></msub><mo stretchy="false" form="prefix">(</mo><mfrac><mi>v</mi><msub><mi>v</mi><mi>r</mi></msub></mfrac><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo><mi>S</mi><mo>cos</mo><msup><mi>θ</mi><msub><mi>F</mi><mi>s</mi></msub></msup><mover><mi>n</mi><mo accent="true">⃗</mo></mover><mo minsize="1.8" maxsize="1.8" stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\overrightarrow{F}_{suction} = \Big((C_{sd1} \frac{v}{v_{r}} + C_{sd2} (\frac{v}{v_{r}})^2) S  \cos\theta^{F_{s}}  \overrightarrow{n}\Big)</annotation></semantics></math></p>
-        <p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>s</mi></msub><annotation encoding="application/x-tex">F_s</annotation></semantics></math> is the falloff power for suction, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mrow><mi>s</mi><mi>d</mi><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">C_{sd1}</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mrow><mi>s</mi><mi>d</mi><mn>2</mn></mrow></msub><annotation encoding="application/x-tex">C_{sd2}</annotation></semantics></math> are linear and quadratic suction drag coefficients, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>v</mi><mi>r</mi></msub><annotation encoding="application/x-tex">v_{r}</annotation></semantics></math> is the same reference speed. Again, all of these are configurable in the editor.</p>
+        <p>This is a very important force, primarily affecting turning
+        and drift of the boat in the water. This force is split into two
+        variants, which apply force on a triangle depending on a
+        property
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>cos</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">\cos\theta</annotation></semantics></math>,
+        the angle between the triangle's normal vector
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>n</mi><mo accent="true">→</mo></mover><annotation encoding="application/x-tex">\overrightarrow{n}</annotation></semantics></math>
+        and its velocity
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>v</mi><mo accent="true">→</mo></mover><annotation encoding="application/x-tex">\overrightarrow{v}</annotation></semantics></math>,
+        which is negative if pointing in the opposite direction, and
+        positive if pointing in the same direction.</p>
+        <p>The definition for the drag that is a 'pressure' (positive
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>cos</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">\cos\theta</annotation></semantics></math>)
+        is as follows:</p>
+        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>F</mi><mo accent="true">→</mo></mover><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>s</mi><mi>s</mi><mi>u</mi><mi>r</mi><mi>e</mi></mrow></msub><mo>=</mo><mo>−</mo><mo minsize="1.8" maxsize="1.8" stretchy="false" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>C</mi><mrow><mi>p</mi><mi>d</mi><mn>1</mn></mrow></msub><mfrac><mi>v</mi><msub><mi>v</mi><mi>r</mi></msub></mfrac><mo>+</mo><msub><mi>C</mi><mrow><mi>p</mi><mi>d</mi><mn>2</mn></mrow></msub><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mi>v</mi><msub><mi>v</mi><mi>r</mi></msub></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo stretchy="true" form="postfix">)</mo></mrow><mi>S</mi><mo>cos</mo><msup><mi>θ</mi><msub><mi>F</mi><mi>p</mi></msub></msup><mover><mi>n</mi><mo accent="true">→</mo></mover><mo minsize="1.8" maxsize="1.8" stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\overrightarrow{F}_{pressure} = -\Big((C_{pd1} \frac{v}{v_{r}} + C_{pd2} (\frac{v}{v_{r}})^2) S  \cos\theta^{F_{p}}  \overrightarrow{n}\Big)</annotation></semantics></math></p>
+        <p>where
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>p</mi></msub><annotation encoding="application/x-tex">F_p</annotation></semantics></math>
+        is the falloff power of the facing dot product (pressure),
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mrow><mi>p</mi><mi>d</mi><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">C_{pd1}</annotation></semantics></math>
+        and
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mrow><mi>p</mi><mi>d</mi><mn>2</mn></mrow></msub><annotation encoding="application/x-tex">C_{pd2}</annotation></semantics></math>
+        are linear and quadratic pressure drag coefficients, and
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>v</mi><mi>r</mi></msub><annotation encoding="application/x-tex">v_{r}</annotation></semantics></math>
+        is a reference speed. The reference speed is to make it easier
+        to tune the drag coefficients. The falloff power is very
+        important. It controls how fast or slow the drag 'falls off'
+        when the triangle's normal transition between parallel (peak
+        drag force) and point velocity (no drag force). All of these are
+        configurable in the editor.</p>
+        <p>The definition for the drag that is a 'suction' (negative
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>cos</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">\cos\theta</annotation></semantics></math>)
+        is as follows:</p>
+        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>F</mi><mo accent="true">→</mo></mover><mrow><mi>s</mi><mi>u</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi></mrow></msub><mo>=</mo><mo minsize="1.8" maxsize="1.8" stretchy="false" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>C</mi><mrow><mi>s</mi><mi>d</mi><mn>1</mn></mrow></msub><mfrac><mi>v</mi><msub><mi>v</mi><mi>r</mi></msub></mfrac><mo>+</mo><msub><mi>C</mi><mrow><mi>s</mi><mi>d</mi><mn>2</mn></mrow></msub><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mi>v</mi><msub><mi>v</mi><mi>r</mi></msub></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo stretchy="true" form="postfix">)</mo></mrow><mi>S</mi><mo>cos</mo><msup><mi>θ</mi><msub><mi>F</mi><mi>s</mi></msub></msup><mover><mi>n</mi><mo accent="true">→</mo></mover><mo minsize="1.8" maxsize="1.8" stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\overrightarrow{F}_{suction} = \Big((C_{sd1} \frac{v}{v_{r}} + C_{sd2} (\frac{v}{v_{r}})^2) S  \cos\theta^{F_{s}}  \overrightarrow{n}\Big)</annotation></semantics></math></p>
+        <p>where
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>s</mi></msub><annotation encoding="application/x-tex">F_s</annotation></semantics></math>
+        is the falloff power for suction,
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mrow><mi>s</mi><mi>d</mi><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">C_{sd1}</annotation></semantics></math>
+        and
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mrow><mi>s</mi><mi>d</mi><mn>2</mn></mrow></msub><annotation encoding="application/x-tex">C_{sd2}</annotation></semantics></math>
+        are linear and quadratic suction drag coefficients, and
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>v</mi><mi>r</mi></msub><annotation encoding="application/x-tex">v_{r}</annotation></semantics></math>
+        is the same reference speed. Again, all of these are
+        configurable in the editor.</p>
         <h4 id="slamming-force">Slamming Force</h4>
-        <p>Slamming Force is the response of the water to sudden accelerations or penetrations from the boat's triangles.</p>
-        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>F</mi><mo accent="true">⃗</mo></mover><mrow><mi>s</mi><mi>l</mi><mi>a</mi><mi>m</mi><mi>m</mi><mi>i</mi><mi>n</mi><mi>g</mi></mrow></msub><mo>=</mo><mi>c</mi><mi>l</mi><mi>a</mi><mi>m</mi><mi>p</mi><mo minsize="1.8" maxsize="1.8" stretchy="false" form="prefix">(</mo><mfrac><mi>Γ</mi><msub><mi>Γ</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub></mfrac><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><msup><mo minsize="1.8" maxsize="1.8" stretchy="false" form="postfix">)</mo><mi>p</mi></msup><mo>cos</mo><mi>θ</mi><msub><mover><mi>F</mi><mo accent="true">⃗</mo></mover><mrow><mi>s</mi><mi>t</mi><mi>o</mi><mi>p</mi><mi>p</mi><mi>i</mi><mi>n</mi><mi>g</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\overrightarrow{F}_{slamming} = clamp \Big(\frac{\Gamma}{\Gamma_{max}},0,1\Big)^p \cos\theta  \overrightarrow{F}_{stopping}</annotation></semantics></math></p>
-        <p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Γ</mi><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math> is the acceleration of a triangle, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Γ</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><annotation encoding="application/x-tex">\Gamma_{max}</annotation></semantics></math> is the maximum acceleration of a triangle, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> is the power to ramp up the slamming force, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>cos</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">\cos\theta</annotation></semantics></math> is the same as seen before in the pressure drag force. Both <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> and a special ``cheat" parameter called <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>l</mi><mi>a</mi><mi>m</mi><mi>m</mi><mi>i</mi><mi>n</mi><mi>g</mi><mi>C</mi><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">Slamming Cheat</annotation></semantics></math> used to multiply the slamming force result, are configurable. Additionally, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>F</mi><mo accent="true">⃗</mo></mover><mrow><mi>s</mi><mi>t</mi><mi>o</mi><mi>p</mi><mi>p</mi><mi>i</mi><mi>n</mi><mi>g</mi></mrow></msub><annotation encoding="application/x-tex">\overrightarrow{F}_{stopping}</annotation></semantics></math> is defined as:</p>
-        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>F</mi><mo accent="true">⃗</mo></mover><mrow><mi>s</mi><mi>t</mi><mi>o</mi><mi>p</mi><mi>p</mi><mi>i</mi><mi>n</mi><mi>g</mi></mrow></msub><mo>=</mo><mi>m</mi><mover><mi>v</mi><mo accent="true">⃗</mo></mover><mo stretchy="false" form="prefix">(</mo><mfrac><mrow><mn>2</mn><mi>A</mi></mrow><mi>S</mi></mfrac><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\overrightarrow{F}_{stopping} = m  \overrightarrow{v}  (\frac{2A}{S})</annotation></semantics></math></p>
-        <p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math> is the mass of the boat, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>v</mi><annotation encoding="application/x-tex">v</annotation></semantics></math> is the velocity of the triangle, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math> is the triangle's area, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math> is the total area of the boat.</p>
+        <p>Slamming Force is the response of the water to sudden
+        accelerations or penetrations from the boat's triangles.</p>
+        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>F</mi><mo accent="true">→</mo></mover><mrow><mi>s</mi><mi>l</mi><mi>a</mi><mi>m</mi><mi>m</mi><mi>i</mi><mi>n</mi><mi>g</mi></mrow></msub><mo>=</mo><mi>c</mi><mi>l</mi><mi>a</mi><mi>m</mi><mi>p</mi><mo minsize="1.8" maxsize="1.8" stretchy="false" form="prefix">(</mo><mfrac><mi>Γ</mi><msub><mi>Γ</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub></mfrac><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><msup><mo minsize="1.8" maxsize="1.8" stretchy="false" form="postfix">)</mo><mi>p</mi></msup><mo>cos</mo><mi>θ</mi><msub><mover><mi>F</mi><mo accent="true">→</mo></mover><mrow><mi>s</mi><mi>t</mi><mi>o</mi><mi>p</mi><mi>p</mi><mi>i</mi><mi>n</mi><mi>g</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\overrightarrow{F}_{slamming} = clamp \Big(\frac{\Gamma}{\Gamma_{max}},0,1\Big)^p \cos\theta  \overrightarrow{F}_{stopping}</annotation></semantics></math></p>
+        <p>where
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Γ</mi><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math>
+        is the acceleration of a triangle,
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Γ</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><annotation encoding="application/x-tex">\Gamma_{max}</annotation></semantics></math>
+        is the maximum acceleration of a triangle,
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>
+        is the power to ramp up the slamming force, and
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>cos</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">\cos\theta</annotation></semantics></math>
+        is the same as seen before in the pressure drag force. Both
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>
+        and a special ``cheat" parameter called
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>l</mi><mi>a</mi><mi>m</mi><mi>m</mi><mi>i</mi><mi>n</mi><mi>g</mi><mi>C</mi><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">Slamming Cheat</annotation></semantics></math>
+        used to multiply the slamming force result, are configurable.
+        Additionally,
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>F</mi><mo accent="true">→</mo></mover><mrow><mi>s</mi><mi>t</mi><mi>o</mi><mi>p</mi><mi>p</mi><mi>i</mi><mi>n</mi><mi>g</mi></mrow></msub><annotation encoding="application/x-tex">\overrightarrow{F}_{stopping}</annotation></semantics></math>
+        is defined as:</p>
+        <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>F</mi><mo accent="true">→</mo></mover><mrow><mi>s</mi><mi>t</mi><mi>o</mi><mi>p</mi><mi>p</mi><mi>i</mi><mi>n</mi><mi>g</mi></mrow></msub><mo>=</mo><mi>m</mi><mover><mi>v</mi><mo accent="true">→</mo></mover><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mn>2</mn><mi>A</mi></mrow><mi>S</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\overrightarrow{F}_{stopping} = m  \overrightarrow{v}  (\frac{2A}{S})</annotation></semantics></math></p>
+        <p>where
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>
+        is the mass of the boat,
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>v</mi><annotation encoding="application/x-tex">v</annotation></semantics></math>
+        is the velocity of the triangle,
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+        is the triangle's area, and
+        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math>
+        is the total area of the boat.</p>
         <p><strong>WORK IN PROGRESS...</strong></p>
     </section>
 </article>
