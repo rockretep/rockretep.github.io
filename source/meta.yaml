@@ -1,20 +1,4 @@
 posts:
-  - rift_rally:
-    filename: rift_rally
-    title: Rift Rally
-    subtitle: 
-    date: 2020-05-01
-    tags: [Company, Team, Game, C, C++, Scripting, Computer-Vision, Shaders, UI]
-    confidence: Certain
-    mainimage: riftrally1.png
-  - oddestsea:
-    filename: oddestsea
-    title: OddestSea
-    subtitle: Published, team developed indie game about sailing in a dark, eerie sea
-    date: 2020-05-01
-    tags: [Team, Game, Unity, C#, Scripting, Design, AI, Shaders]
-    confidence: Certain
-    mainimage: oddestsea2.png
   - AI_framework:
     filename: AI_framework
     title: AI Framework for games
@@ -37,24 +21,34 @@ posts:
     subtitle: OCR tool to parse and record data from the game *Banished*
     date: 2019-09-01
     tags: [Solo, Tool, JS, AI]
-    confidence: Certain
+    confidence: Likely
     mainimage: banished2.png
-  #- brainfreeze:
-  #  filename: brainfreeze
-  #  title: Brain Freeze
-  #  subtitle: Early venture into using game engines.
-  #  date: 2014-12-01
-  #  tags: [Solo, Game, GameMaker, Scripting, Design]
-  #  confidence: Unlikely
-  #  mainimage: brainfreeze1.png
   - charbble:
     filename: charbble
     title: Charbble
     subtitle: Rouge-like puzzle game influenced by *Scrabble* and crosswords
     date: 2017-12-14
     tags: [Solo, Game, Unity, C#, Scripting, Design]
-    confidence: Likely
+    confidence: Possible
     mainimage: charbble1.png
+  - oddestsea:
+    filename: oddestsea
+    title: OddestSea
+    subtitle: Published, team developed indie game about sailing in a dark, eerie sea
+    date: 2020-05-01
+    tags: [Team, Game, Unity, C#, Scripting, Design, AI, Shaders]
+    confidence: Likely
+    mainimage: oddestsea2.png
+  - :
+
+  - rift_rally:
+    filename: rift_rally
+    title: Rift Rally
+    subtitle: 
+    date: 2020-05-01
+    tags: [Company, Team, Game, C, C++, Scripting, Computer Vision, Shaders, UI]
+    confidence: Likely
+    mainimage: riftrally1.png
   - taps:
     filename: taps
     title: The Astro Parcel Service
@@ -69,5 +63,5 @@ posts:
     subtitle: Spatial puzzle game with tumbling blocks
     date: 2018-06-01
     tags: [Team, Game, Unity, C#, Scripting, Math, Design]
-    confidence: Possible
+    confidence: Likely
     mainimage: tumbleblock3.png
